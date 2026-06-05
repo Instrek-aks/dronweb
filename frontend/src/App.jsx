@@ -167,7 +167,10 @@ export default function App() {
         content: msg.content
       }));
 
-      const apiEndpoint = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/chat';
+      // Use Netlify function in production, fallback to local server in development
+      const apiEndpoint = import.meta.env.PROD 
+        ? '/.netlify/functions/chat' 
+        : (import.meta.env.VITE_API_URL || 'http://localhost:5000/api/chat');
       const res = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
