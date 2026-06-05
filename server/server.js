@@ -19,7 +19,7 @@ app.post('/api/chat', async (req, res) => {
   const { messages, system } = req.body;
 
   // Check if API key is configured
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY?.trim();
   if (!apiKey || apiKey === 'your_gemini_api_key_here') {
     console.error('Error: GEMINI_API_KEY is not set in server/.env');
     return res.status(500).json({
