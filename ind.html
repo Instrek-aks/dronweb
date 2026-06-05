@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>drones.help — The Global Drone Intelligence Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0A0E1A; --ink-mid:#2E3449; --ink-muted:#6B7280;
+  --surface:#F5F6FA; --white:#fff;
+  --accent:#00D4FF; --accent-dark:#0099BB; --accent-green:#00E5A0; --accent-warm:#FF6B35;
+  --border:rgba(10,14,26,0.10);
+  --bot-bg:#EAF6FB; --user-bg:#0A0E1A;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);line-height:1.6;overflow-x:hidden}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--ink-mid);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink)!important;color:#fff!important;padding:.52rem 1.35rem;border-radius:50px;font-size:.875rem;font-weight:500}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 4rem 5rem;gap:4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.07) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:50px;padding:.35rem 1rem;font-size:.8rem;font-weight:500;color:#0099BB;margin-bottom:1.5rem;letter-spacing:.04em;text-transform:uppercase}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:#00D4FF;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'Syne',sans-serif;font-size:4.2rem;font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:1.1rem;color:var(--ink-muted);font-weight:300;line-height:1.75;max-width:480px;margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-primary{background:var(--ink);color:#fff;padding:.85rem 2rem;border-radius:50px;font-size:.95rem;font-weight:500;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-primary:hover{background:#1a2240;transform:translateY(-1px)}
+.btn-secondary{color:var(--ink);font-size:.95rem;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:gap .2s}
+.btn-secondary:hover{gap:.7rem}
+.btn-secondary::after{content:'→'}
+.hero-visual{display:flex;align-items:center;justify-content:center}
+.drone-diagram{width:100%;max-width:520px;filter:drop-shadow(0 20px 60px rgba(0,212,255,.15))}
+
+/* ===== STATS ===== */
+.stats-strip{background:var(--ink);padding:3rem 4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:var(--accent);line-height:1}
+.stat-label{font-size:.85rem;color:rgba(255,255,255,.55);margin-top:.4rem}
+
+/* ===== SECTIONS ===== */
+section{padding:6rem 4rem}
+.section-label{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:.75rem}
+.section-title{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:1rem}
+.section-sub{font-size:1.05rem;color:var(--ink-muted);max-width:540px;line-height:1.75;margin-bottom:3.5rem}
+
+/* ===== SERVICES ===== */
+.services{background:var(--surface)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.service-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2rem;transition:all .25s;position:relative;overflow:hidden}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-green));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
+.service-card:hover::after{transform:scaleX(1)}
+.service-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.25rem}
+.service-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.6rem}
+.service-card p{font-size:.9rem;color:var(--ink-muted);line-height:1.65}
+.service-tag{display:inline-block;margin-top:1rem;font-size:.75rem;font-weight:500;padding:.25rem .75rem;border-radius:50px;background:var(--surface);color:var(--ink-mid)}
+
+/* ===== HOW IT WORKS ===== */
+.how-it-works{background:#fff}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative}
+.step-connector{position:absolute;top:28px;left:calc(25% - 10px);right:calc(25% - 10px);height:1px;background:repeating-linear-gradient(90deg,var(--border) 0,var(--border) 6px,transparent 6px,transparent 14px)}
+.step{text-align:center;position:relative}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--ink);color:#fff;font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;position:relative;z-index:1}
+.step h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.step p{font-size:.875rem;color:var(--ink-muted);line-height:1.6}
+
+/* ===== DRONE TYPES ===== */
+.drone-types{background:var(--surface)}
+.types-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.type-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2rem;display:grid;grid-template-columns:80px 1fr;gap:1.5rem;align-items:start;transition:box-shadow .2s}
+.type-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.07)}
+.type-img{width:80px;height:80px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.type-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.type-card p{font-size:.875rem;color:var(--ink-muted);line-height:1.65}
+
+/* ===== TECH COMPANIES ===== */
+.tech-section{background:#fff}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.tech-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:all .2s}
+.tech-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.07);background:#fff}
+.tech-company-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.tech-country{font-size:.75rem;color:var(--ink-muted);margin-bottom:.85rem}
+.tech-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tech-tag{font-size:.72rem;font-weight:500;padding:.2rem .65rem;border-radius:50px;background:#fff;color:var(--ink-mid);border:1px solid var(--border)}
+
+/* ===== PRICING ===== */
+.pricing{background:var(--surface)}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start}
+.plan-card{border:1px solid var(--border);border-radius:20px;padding:2.25rem 2rem;position:relative;background:#fff;transition:all .25s}
+.plan-card.featured{background:var(--ink);border-color:var(--ink);color:#fff;transform:scale(1.03);box-shadow:0 24px 60px rgba(10,14,26,.2)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--ink);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem 1rem;border-radius:50px;white-space:nowrap}
+.plan-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.plan-price{font-family:'Syne',sans-serif;font-size:2.6rem;font-weight:800;line-height:1;margin:1rem 0 .25rem}
+.plan-price sup{font-size:1.2rem;font-weight:600;vertical-align:top;margin-top:.4rem}
+.plan-period{font-size:.85rem;color:var(--ink-muted);margin-bottom:1.75rem}
+.plan-card.featured .plan-period{color:rgba(255,255,255,.5)}
+.plan-features{list-style:none;margin-bottom:2rem}
+.plan-features li{font-size:.9rem;padding:.45rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem;color:var(--ink-mid)}
+.plan-card.featured .plan-features li{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.12)}
+.plan-features li::before{content:'✓';font-weight:700;color:var(--accent-green);font-size:.85rem}
+.plan-card .btn-primary{width:100%;text-align:center;display:block}
+.plan-card.featured .btn-primary{background:var(--accent);color:var(--ink)}
+
+/* ===== FAQ + CHATBOT SECTION ===== */
+.faq-chatbot-section{background:#0A0E1A;padding:6rem 4rem}
+.faq-chatbot-section .section-label{color:rgba(0,212,255,.6)}
+.faq-chatbot-section .section-title{color:#fff}
+.faq-chatbot-section .section-sub{color:rgba(255,255,255,.5)}
+.faq-chat-layout{display:grid;grid-template-columns:1fr 420px;gap:2rem;align-items:start}
+
+/* FAQ panel */
+.faq-panel{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden}
+.faq-panel-header{background:rgba(0,212,255,.08);border-bottom:1px solid rgba(0,212,255,.15);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.faq-panel-header h2{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:#fff}
+.faq-count{background:rgba(0,212,255,.15);border-radius:50px;padding:.25rem .8rem;font-size:.8rem;color:var(--accent)}
+.faq-search-wrap{padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.search-wrap-inner{position:relative}
+.search-icon{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);font-size:1rem;color:rgba(255,255,255,.35);pointer-events:none}
+.faq-search{width:100%;padding:.7rem 1rem .7rem 2.75rem;border:1px solid rgba(255,255,255,.1);border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:#fff;background:rgba(255,255,255,.06);outline:none;transition:border-color .2s}
+.faq-search::placeholder{color:rgba(255,255,255,.35)}
+.faq-search:focus{border-color:var(--accent)}
+.faq-cats{display:flex;gap:.5rem;padding:1rem 1.5rem;overflow-x:auto;border-bottom:1px solid rgba(255,255,255,.07);scrollbar-width:none}
+.faq-cats::-webkit-scrollbar{display:none}
+.cat-tab{white-space:nowrap;padding:.4rem 1rem;border-radius:50px;font-size:.8rem;font-weight:500;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.55);transition:all .2s;font-family:'DM Sans',sans-serif}
+.cat-tab.active,.cat-tab:hover{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+.faq-list{padding:1rem 1.5rem;max-height:580px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
+.faq-list::-webkit-scrollbar{width:4px}
+.faq-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}
+.faq-category-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,212,255,.5);padding:.75rem 0 .5rem}
+.faq-item{border:1px solid rgba(255,255,255,.07);border-radius:12px;margin-bottom:.6rem;overflow:hidden;transition:all .2s}
+.faq-item:hover{border-color:rgba(0,212,255,.25)}
+.faq-item.open{border-color:rgba(0,212,255,.3)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.1rem;cursor:pointer;gap:1rem}
+.faq-q-text{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.85);line-height:1.45;flex:1}
+.faq-chevron{font-size:.9rem;color:rgba(255,255,255,.35);transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--accent)}
+.faq-a{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.7;padding:0 1.1rem 1rem;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-a-inner{border-top:1px solid rgba(255,255,255,.07);padding-top:.75rem}
+.ask-chat-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:.75rem;font-size:.8rem;font-weight:500;color:var(--accent);cursor:pointer;background:none;border:none;padding:0;font-family:'DM Sans',sans-serif;transition:opacity .2s}
+.ask-chat-btn:hover{opacity:.75}
+.no-results{padding:2rem;text-align:center;color:rgba(255,255,255,.4);font-size:.9rem}
+
+/* Chat panel */
+.chat-panel{position:sticky;top:90px;background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;height:700px}
+.chat-header{background:rgba(0,212,255,.08);border-bottom:1px solid rgba(0,212,255,.15);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:.9rem;flex-shrink:0}
+.chat-avatar{width:40px;height:40px;border-radius:50%;background:rgba(0,212,255,.15);border:2px solid rgba(0,212,255,.4);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.chat-header-info h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff}
+.chat-header-info p{font-size:.72rem;color:rgba(255,255,255,.4)}
+.online-dot{width:8px;height:8px;border-radius:50%;background:#00E5A0;margin-left:auto;flex-shrink:0;animation:onlinePulse 2.5s infinite}
+@keyframes onlinePulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,160,.5)}60%{box-shadow:0 0 0 5px rgba(0,229,160,0)}}
+.chat-messages{flex:1;overflow-y:auto;padding:1.25rem 1rem;display:flex;flex-direction:column;gap:.75rem;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
+.chat-messages::-webkit-scrollbar{width:4px}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}
+.msg{display:flex;gap:.6rem;align-items:flex-end;animation:msgIn .25s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg.bot{flex-direction:row}
+.msg.user{flex-direction:row-reverse}
+.msg-avatar{width:28px;height:28px;border-radius:50%;background:rgba(0,212,255,.15);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
+.msg.user .msg-avatar{background:rgba(255,255,255,.08);font-size:.65rem;font-weight:700;color:rgba(255,255,255,.6)}
+.msg-bubble{max-width:80%;padding:.7rem .95rem;border-radius:16px;font-size:.875rem;line-height:1.6}
+.bot .msg-bubble{background:rgba(255,255,255,.07);color:rgba(255,255,255,.88);border-bottom-left-radius:4px}
+.user .msg-bubble{background:var(--accent);color:var(--ink);font-weight:500;border-bottom-right-radius:4px}
+.msg-bubble.typing{display:flex;align-items:center;gap:3px;padding:.7rem 1rem}
+.typing-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);animation:typingBounce 1.2s infinite}
+.typing-dot:nth-child(2){animation-delay:.2s}
+.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes typingBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.quick-replies{display:flex;flex-wrap:wrap;gap:.4rem;padding:.5rem 1rem .8rem;flex-shrink:0}
+.qr-btn{padding:.4rem .85rem;border:1px solid rgba(0,212,255,.25);border-radius:50px;font-size:.78rem;font-weight:500;cursor:pointer;background:rgba(0,212,255,.06);color:var(--accent);transition:all .2s;font-family:'DM Sans',sans-serif}
+.qr-btn:hover{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+.chat-input-row{display:flex;gap:.6rem;padding:.85rem 1rem;border-top:1px solid rgba(255,255,255,.07);flex-shrink:0}
+.chat-input{flex:1;padding:.65rem .9rem;border:1px solid rgba(255,255,255,.1);border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.875rem;color:#fff;background:rgba(255,255,255,.07);outline:none;transition:border-color .2s}
+.chat-input::placeholder{color:rgba(255,255,255,.3)}
+.chat-input:focus{border-color:var(--accent)}
+.send-btn{width:38px;height:38px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .2s}
+.send-btn:hover{opacity:.85}
+.send-btn svg{width:15px;height:15px;fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== CTA ===== */
+.cta-section{background:var(--ink);padding:7rem 4rem;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:900px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.1) 0%,transparent 65%);pointer-events:none}
+.cta-section h2{font-family:'Syne',sans-serif;font-size:3.2rem;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:1.25rem}
+.cta-section h2 span{color:var(--accent)}
+.cta-section p{font-size:1.1rem;color:rgba(255,255,255,.5);margin-bottom:2.5rem;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-accent{background:var(--accent);color:var(--ink);padding:.9rem 2.25rem;border-radius:50px;font-size:.95rem;font-weight:600;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,255,.3)}
+.btn-outline-white{border:1px solid rgba(255,255,255,.25);color:#fff;padding:.9rem 2.25rem;border-radius:50px;font-size:.95rem;font-weight:500;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.6)}
+
+/* ===== FOOTER ===== */
+footer{background:#060A14;padding:3.5rem 4rem;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;color:rgba(255,255,255,.5);font-size:.875rem}
+.footer-brand .logo{color:#fff}
+.footer-brand p{margin-top:1rem;line-height:1.7;max-width:220px}
+footer h5{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem}
+footer ul{list-style:none}
+footer li{margin-bottom:.6rem}
+footer a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+footer a:hover{color:#fff}
+.footer-bottom{background:#060A14;padding:1.25rem 4rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:rgba(255,255,255,.3)}
+.footer-bottom a{color:rgba(255,255,255,.3);text-decoration:none}
+
+/* utilities */
+.bg-blue{background:#EAF4FF} .bg-orange{background:#FFF0E8} .bg-green{background:#E8FFF5}
+.bg-purple{background:#F0EBFF} .bg-yellow{background:#FFFBE8} .bg-pink{background:#FFEBF4}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-content>*{animation:fadeUp .6s ease forwards;opacity:0}
+.hero-content>*:nth-child(1){animation-delay:.1s}
+.hero-content>*:nth-child(2){animation-delay:.2s}
+.hero-content>*:nth-child(3){animation-delay:.3s}
+.hero-content>*:nth-child(4){animation-delay:.4s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">drones<span>.help</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#drone-types">Drone Types</a></li>
+    <li><a href="#tech">Companies</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#" class="nav-cta">Get Started Free</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Global Drone Intelligence Hub</div>
+    <h1>Your complete guide to <em>every drone</em> on earth</h1>
+    <p class="hero-sub">Setup tutorials, repair guides, technology deep-dives, and an encyclopaedia of every drone model and manufacturer — plus an AI assistant that answers instantly.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Tutorials</a>
+      <a href="#faq" class="btn-secondary">Ask the AI</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <svg class="drone-diagram" viewBox="0 0 520 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M 32 0 L 0 0 0 32" fill="none" stroke="#E8EAF0" stroke-width="0.5"/></pattern></defs>
+      <rect width="520" height="420" fill="#F8FAFF" rx="20"/>
+      <rect width="520" height="420" fill="url(#grid)" rx="20"/>
+      <rect x="195" y="175" width="130" height="70" rx="12" fill="#0A0E1A"/>
+      <rect x="215" y="185" width="90" height="50" rx="8" fill="#1A2240"/>
+      <circle cx="260" cy="210" r="16" fill="#0A0E1A" stroke="#00D4FF" stroke-width="1.5"/>
+      <circle cx="260" cy="210" r="9" fill="#00D4FF" opacity="0.3"/>
+      <circle cx="260" cy="210" r="5" fill="#00D4FF"/>
+      <rect x="100" y="195" width="100" height="8" rx="4" fill="#2E3449" transform="rotate(-20 100 195)"/>
+      <rect x="320" y="185" width="100" height="8" rx="4" fill="#2E3449" transform="rotate(20 320 185)"/>
+      <rect x="100" y="225" width="100" height="8" rx="4" fill="#2E3449" transform="rotate(20 100 225)"/>
+      <rect x="320" y="215" width="100" height="8" rx="4" fill="#2E3449" transform="rotate(-20 320 215)"/>
+      <ellipse cx="95" cy="155" rx="55" ry="9" fill="#00D4FF" opacity="0.18"/>
+      <line x1="40" y1="155" x2="150" y2="155" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="95" cy="155" r="5" fill="#0A0E1A" stroke="#00D4FF" stroke-width="1.5"/>
+      <ellipse cx="425" cy="148" rx="55" ry="9" fill="#00D4FF" opacity="0.18"/>
+      <line x1="370" y1="148" x2="480" y2="148" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="425" cy="148" r="5" fill="#0A0E1A" stroke="#00D4FF" stroke-width="1.5"/>
+      <ellipse cx="88" cy="280" rx="55" ry="9" fill="#00E5A0" opacity="0.18"/>
+      <line x1="33" y1="280" x2="143" y2="280" stroke="#00E5A0" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="88" cy="280" r="5" fill="#0A0E1A" stroke="#00E5A0" stroke-width="1.5"/>
+      <ellipse cx="432" cy="272" rx="55" ry="9" fill="#00E5A0" opacity="0.18"/>
+      <line x1="377" y1="272" x2="487" y2="272" stroke="#00E5A0" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="432" cy="272" r="5" fill="#0A0E1A" stroke="#00E5A0" stroke-width="1.5"/>
+      <line x1="225" y1="245" x2="215" y2="310" stroke="#2E3449" stroke-width="3" stroke-linecap="round"/>
+      <line x1="295" y1="245" x2="305" y2="310" stroke="#2E3449" stroke-width="3" stroke-linecap="round"/>
+      <line x1="200" y1="310" x2="240" y2="310" stroke="#2E3449" stroke-width="3" stroke-linecap="round"/>
+      <line x1="280" y1="310" x2="320" y2="310" stroke="#2E3449" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="260" cy="110" r="20" stroke="#00D4FF" stroke-width="1.2" opacity="0.4" fill="none"/>
+      <circle cx="260" cy="110" r="35" stroke="#00D4FF" stroke-width="0.8" opacity="0.25" fill="none"/>
+      <circle cx="260" cy="110" r="52" stroke="#00D4FF" stroke-width="0.5" opacity="0.12" fill="none"/>
+      <line x1="260" y1="143" x2="260" y2="175" stroke="#00D4FF" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+      <rect x="22" y="120" width="110" height="28" rx="6" fill="white" stroke="#E8EAF0" stroke-width="1"/>
+      <text x="77" y="139" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#6B7280">Brushless Motors</text>
+      <rect x="385" y="112" width="110" height="28" rx="6" fill="white" stroke="#E8EAF0" stroke-width="1"/>
+      <text x="440" y="131" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#6B7280">4K Gimbal Camera</text>
+      <rect x="30" y="335" width="100" height="28" rx="6" fill="white" stroke="#E8EAF0" stroke-width="1"/>
+      <text x="80" y="354" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#6B7280">GPS Module</text>
+      <rect x="390" y="328" width="100" height="28" rx="6" fill="white" stroke="#E8EAF0" stroke-width="1"/>
+      <text x="440" y="347" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#6B7280">LiPo Battery</text>
+      <line x1="130" y1="134" x2="155" y2="155" stroke="#CBD5E0" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <line x1="385" y1="126" x2="365" y2="148" stroke="#CBD5E0" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <line x1="130" y1="349" x2="160" y2="310" stroke="#CBD5E0" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <line x1="390" y1="342" x2="358" y2="310" stroke="#CBD5E0" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <rect x="193" y="360" width="134" height="32" rx="16" fill="#0A0E1A"/>
+      <circle cx="214" cy="376" r="5" fill="#00E5A0"/>
+      <text x="226" y="380" font-family="DM Sans,sans-serif" font-size="11.5" fill="white" font-weight="500">Live · 94m altitude</text>
+    </svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div><div class="stat-num">1,400+</div><div class="stat-label">Drone models catalogued</div></div>
+  <div><div class="stat-num">320+</div><div class="stat-label">Step-by-step tutorials</div></div>
+  <div><div class="stat-num">80+</div><div class="stat-label">Manufacturers covered</div></div>
+  <div><div class="stat-num">46</div><div class="stat-label">Countries with regulations</div></div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label">What we offer</div>
+  <h2 class="section-title">Everything you need to know about drones</h2>
+  <p class="section-sub">From first-time setup to advanced electronics repair — expert-authored content for every stage of your drone journey.</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon bg-blue">🛠️</div><h3>Setup Tutorials</h3><p>Guided setup for 500+ models. Remote binding, IMU calibration, flight mode configuration, and maiden-flight checklists.</p><span class="service-tag">Beginner Friendly</span></div>
+    <div class="service-card"><div class="service-icon bg-orange">🔧</div><h3>Repair and Diagnostics</h3><p>Fix motor failures, replace ESCs, resolder boards, troubleshoot firmware crashes, and repair cracked frames. Video and written guides.</p><span class="service-tag">Intermediate</span></div>
+    <div class="service-card"><div class="service-icon bg-green">📡</div><h3>Technology Deep Dives</h3><p>How obstacle avoidance, LiDAR, FPV signal stacks, and autopilot firmware work — explained for pilots and engineers alike.</p><span class="service-tag">Technical</span></div>
+    <div class="service-card"><div class="service-icon bg-purple">🗂️</div><h3>Drone Model Encyclopaedia</h3><p>Spec sheets, sensor payloads, endurance ratings, and competitor comparisons for 1,400+ consumer, commercial, and military drones.</p><span class="service-tag">Reference</span></div>
+    <div class="service-card"><div class="service-icon bg-yellow">🏭</div><h3>Company and Tech Intelligence</h3><p>In-depth profiles on 80+ manufacturers: flagship technologies, IP portfolios, funding history, and market positioning.</p><span class="service-tag">Industry</span></div>
+    <div class="service-card"><div class="service-icon bg-pink">🌍</div><h3>Regulations by Country</h3><p>Drone regulations, licensing requirements, no-fly zones, and import restrictions for 46 countries — updated quarterly.</p><span class="service-tag">Compliance</span></div>
+    <div class="service-card"><div class="service-icon bg-blue">🎓</div><h3>Certification Prep</h3><p>Courses aligned to FAA Part 107, DGCA India, EU A1/A2/A3, and BVLOS operator certifications.</p><span class="service-tag">Career</span></div>
+    <div class="service-card"><div class="service-icon bg-green">🤖</div><h3>Custom Build Guides</h3><p>Component selection, motor-prop pairing calculators, and full BOMs for FPV freestyle, long-range, and commercial builds.</p><span class="service-tag">Advanced</span></div>
+    <div class="service-card"><div class="service-icon bg-orange">💬</div><h3>Expert Q&amp;A Community</h3><p>Ask certified drone engineers and veteran pilots. Verified answers, searchable archive, and weekly live AMA sessions.</p><span class="service-tag">Community</span></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">From zero to flying in four steps</h2>
+  <p class="section-sub">Structured learning paths from unboxing to certified pilot — without the overwhelm.</p>
+  <div class="steps-grid">
+    <div class="step-connector"></div>
+    <div class="step"><div class="step-num">01</div><h4>Choose Your Drone</h4><p>Search our encyclopaedia by model, category, budget, or use case.</p></div>
+    <div class="step"><div class="step-num">02</div><h4>Follow Setup Guide</h4><p>Step-by-step photo and video tutorials built for your exact model.</p></div>
+    <div class="step"><div class="step-num">03</div><h4>Learn the Tech</h4><p>Understand every component — sensors, firmware, protocols, and flight physics.</p></div>
+    <div class="step"><div class="step-num">04</div><h4>Fly and Grow</h4><p>Advanced tutorials, repair guides, and certification paths as your skills develop.</p></div>
+  </div>
+</section>
+
+<!-- DRONE TYPES -->
+<section class="drone-types" id="drone-types">
+  <div class="section-label">Drone categories</div>
+  <h2 class="section-title">Every class of drone, covered</h2>
+  <p class="section-sub">Tutorials and encyclopaedia entries spanning every major drone category in the global market today.</p>
+  <div class="types-grid">
+    <div class="type-card"><div class="type-img bg-blue">🚁</div><div><h3>Consumer Quadcopters</h3><p>DJI Mini series, Autel Evo Nano, Holy Stone — setup, calibration, and photography guides.</p></div></div>
+    <div class="type-card"><div class="type-img bg-orange">🎬</div><div><h3>Professional Cinema Drones</h3><p>DJI Inspire, Freefly Alta, and heavy-lift cinema platforms. Gimbal and payload integration.</p></div></div>
+    <div class="type-card"><div class="type-img bg-green">🌾</div><div><h3>Agricultural Drones</h3><p>DJI Agras, XAG P100, Hylio AG-272 — spraying, multispectral imaging, and precision agriculture.</p></div></div>
+    <div class="type-card"><div class="type-img bg-purple">⚡</div><div><h3>FPV and Racing Drones</h3><p>Custom 5-inch freestyle builds, TinyWhoops, long-range FPV, and Betaflight tuning guides.</p></div></div>
+    <div class="type-card"><div class="type-img bg-yellow">🔭</div><div><h3>Fixed-Wing and VTOL</h3><p>WingtraOne, SenseFly eBee, and BVLOS survey platforms. Autopilot and mission planning.</p></div></div>
+    <div class="type-card"><div class="type-img bg-pink">🛡️</div><div><h3>Defence and Surveillance UAVs</h3><p>Technology profiles of military-grade UAVs, loitering munitions, swarm systems, and counter-drone tech.</p></div></div>
+    <div class="type-card"><div class="type-img bg-blue">📦</div><div><h3>Cargo and Delivery Drones</h3><p>Wing, Zipline, Manna Aero — payload systems, route planning, and UTM integration.</p></div></div>
+    <div class="type-card"><div class="type-img bg-green">🏗️</div><div><h3>Industrial Inspection Drones</h3><p>Thermal, LiDAR, and gas-sensor platforms for infrastructure, power lines, and pipeline inspection.</p></div></div>
+  </div>
+</section>
+
+<!-- TECH COMPANIES -->
+<section class="tech-section" id="tech">
+  <div class="section-label">Companies and technologies</div>
+  <h2 class="section-title">Who is building the future of drones</h2>
+  <p class="section-sub">Profiles of the world's leading drone manufacturers and what sets their core technology apart.</p>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="tech-company-name">DJI</div><div class="tech-country">China — Consumer and Professional</div><div class="tech-tags"><span class="tech-tag">OcuSync O3+</span><span class="tech-tag">APAS 5.0 Avoidance</span><span class="tech-tag">ActiveTrack</span><span class="tech-tag">4K Gimbal</span></div></div>
+    <div class="tech-card"><div class="tech-company-name">Autel Robotics</div><div class="tech-country">USA — Consumer</div><div class="tech-tags"><span class="tech-tag">SkyLink Transmission</span><span class="tech-tag">LiDAR Avoidance</span><span class="tech-tag">HDR Imaging</span></div></div>
+    <div class="tech-card"><div class="tech-company-name">Skydio</div><div class="tech-country">USA — AI Autonomy</div><div class="tech-tags"><span class="tech-tag">AI Autonomy Engine</span><span class="tech-tag">360 Obstacle Avoidance</span><span class="tech-tag">Keyframe</span></div></div>
+    <div class="tech-card"><div class="tech-company-name">Parrot Group</div><div class="tech-country">France — Enterprise</div><div class="tech-tags"><span class="tech-tag">FreeFlight 7</span><span class="tech-tag">ANAFI Thermal</span><span class="tech-tag">Pix4D Integration</span></div></div>
+    <div class="tech-card"><div class="tech-company-name">senseFly (Trimble)</div><div class="tech-country">Switzerland — Surveying</div><div class="tech-tags"><span class="tech-tag">Fixed-Wing Autopilot</span><span class="tech-tag">PPK RTK GPS</span><span class="tech-tag">eMotion Software</span></div></div>
+    <div class="tech-card"><div class="tech-company-name">Zipline</div><div class="tech-country">USA — Delivery Logistics</div><div class="tech-tags"><span class="tech-tag">Fixed-Wing Delivery</span><span class="tech-tag">Autonomous Dispatch</span><span class="tech-tag">Platform 2 Droid</span></div></div>
+    <div class="tech-card"><div class="tech-company-name">XAG</div><div class="tech-country">China — Agriculture</div><div class="tech-tags"><span class="tech-tag">RealTerra 3D Mapping</span><span class="tech-tag">Precision Spraying</span><span class="tech-tag">5G RTK</span></div></div>
+    <div class="tech-card"><div class="tech-company-name">Quantum Systems</div><div class="tech-country">Germany — Defence VTOL</div><div class="tech-tags"><span class="tech-tag">Vector VTOL</span><span class="tech-tag">AI Sensor Fusion</span><span class="tech-tag">BVLOS Certified</span></div></div>
+    <div class="tech-card"><div class="tech-company-name">Percepto</div><div class="tech-country">Israel — Autonomous Inspection</div><div class="tech-tags"><span class="tech-tag">Drone-in-a-Box</span><span class="tech-tag">AIM Platform</span><span class="tech-tag">Thermal Analytics</span></div></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-label">Membership plans</div>
+  <h2 class="section-title">Start free. Upgrade anytime.</h2>
+  <p class="section-sub">Hundreds of free tutorials on day one. Unlock the full library, certifications, and expert support with a premium plan.</p>
+  <div class="plans-grid">
+    <div class="plan-card">
+      <div class="plan-name">Free</div>
+      <div class="plan-price"><sup>$</sup>0</div>
+      <div class="plan-period">Forever free</div>
+      <ul class="plan-features">
+        <li>50 setup tutorials</li><li>Basic model encyclopaedia</li><li>Company profiles (partial)</li><li>Community forum access</li><li>Regulations: 10 countries</li>
+      </ul>
+      <a href="#" class="btn-primary">Get Started</a>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-name">Pro</div>
+      <div class="plan-price"><sup>$</sup>19</div>
+      <div class="plan-period">per month, billed annually</div>
+      <ul class="plan-features">
+        <li>All 320+ tutorials</li><li>Full model encyclopaedia</li><li>Repair and diagnostics library</li><li>Full regulations: 46 countries</li><li>Custom build guides and BOMs</li><li>Certification prep courses</li><li>Priority expert Q&amp;A</li>
+      </ul>
+      <a href="#" class="btn-primary">Start Pro</a>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-price"><sup>$</sup>79</div>
+      <div class="plan-period">per month, up to 10 seats</div>
+      <ul class="plan-features">
+        <li>Everything in Pro</li><li>Team management dashboard</li><li>Custom training paths</li><li>White-label course builder</li><li>API access to drone database</li><li>Quarterly regulatory updates</li><li>Dedicated account manager</li>
+      </ul>
+      <a href="#" class="btn-primary">Contact Sales</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ + CHATBOT ===== -->
+<section class="faq-chatbot-section" id="faq">
+  <div class="section-label">FAQ + AI Assistant</div>
+  <h2 class="section-title">35 expert answers. And an AI that goes deeper.</h2>
+  <p class="section-sub">Search our drone FAQ instantly. Or ask the AI assistant anything — it answers in seconds, qualifies your needs, and connects you with the right resource.</p>
+
+  <div class="faq-chat-layout">
+
+    <!-- FAQ PANEL -->
+    <div class="faq-panel">
+      <div class="faq-panel-header">
+        <h2>Drone FAQ — 35 Expert Answers</h2>
+        <span class="faq-count">7 Categories</span>
+      </div>
+      <div class="faq-search-wrap">
+        <div class="search-wrap-inner">
+          <span class="search-icon">🔍</span>
+          <input class="faq-search" type="text" placeholder="Search questions..." id="faqSearch" oninput="filterFAQ()">
+        </div>
+      </div>
+      <div class="faq-cats" id="catTabs">
+        <div class="cat-tab active" onclick="filterCat('all',this)">All</div>
+        <div class="cat-tab" onclick="filterCat('basics',this)">Basics</div>
+        <div class="cat-tab" onclick="filterCat('setup',this)">Setup</div>
+        <div class="cat-tab" onclick="filterCat('repair',this)">Repair</div>
+        <div class="cat-tab" onclick="filterCat('tech',this)">Technology</div>
+        <div class="cat-tab" onclick="filterCat('regs',this)">Regulations</div>
+        <div class="cat-tab" onclick="filterCat('pricing',this)">Pricing</div>
+        <div class="cat-tab" onclick="filterCat('advanced',this)">Advanced</div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+
+    <!-- CHATBOT -->
+    <div class="chat-panel">
+      <div class="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div class="chat-header-info">
+          <h3>Drone Assistant</h3>
+          <p>drones.help AI — replies instantly</p>
+        </div>
+        <div class="online-dot"></div>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="quick-replies" id="quickReplies"></div>
+      <div class="chat-input-row">
+        <input class="chat-input" type="text" id="chatInput" placeholder="Ask anything about drones..." onkeydown="if(event.key==='Enter')sendMessage()">
+        <button class="send-btn" onclick="sendMessage()">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to master <span>every drone</span> on earth?</h2>
+  <p>Join 40,000 pilots, engineers, and enthusiasts who learn with drones.help every month.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn-accent">Start for Free</a>
+    <a href="#faq" class="btn-outline-white">Ask the AI Now</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#" class="logo">drones<span style="color:var(--accent)">.help</span></a>
+    <p>The world's most comprehensive drone learning and intelligence platform. Built for everyone from first-time flyers to defence engineers.</p>
+  </div>
+  <div>
+    <h5>Learn</h5>
+    <ul><li><a href="#">Setup Tutorials</a></li><li><a href="#">Repair Guides</a></li><li><a href="#">Custom Builds</a></li><li><a href="#">Certification Prep</a></li><li><a href="#">Technology Explainers</a></li></ul>
+  </div>
+  <div>
+    <h5>Explore</h5>
+    <ul><li><a href="#">Drone Encyclopaedia</a></li><li><a href="#">Company Profiles</a></li><li><a href="#">Regulations Hub</a></li><li><a href="#">Comparison Tool</a></li><li><a href="#">Community Forum</a></li></ul>
+  </div>
+  <div>
+    <h5>Company</h5>
+    <ul><li><a href="#">About</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>2025 drones.help. All rights reserved.</span>
+  <a href="https://www.drones.help">www.drones.help</a>
+</div>
+
+<script>
+// ===== FAQ DATA =====
+const FAQ_DATA=[
+  {cat:'basics',q:'What is a drone?',a:'A drone (UAV) is an unmanned aerial vehicle controlled remotely or autonomously. They range from $50 hobby toys to million-dollar military systems, carrying cameras, sensors, or cargo depending on their purpose.'},
+  {cat:'basics',q:'What are the main types of drones?',a:'Multi-rotor (most common, stable hover) / Fixed-wing (longer range, efficient) / VTOL (vertical takeoff, fixed-wing cruise) / FPV racing (ultra-fast, pilot-view) / Agricultural / Industrial inspection / Military and defence UAVs.'},
+  {cat:'basics',q:'What are drones used for?',a:'Aerial photography, agriculture (spraying, mapping), construction inspection, package delivery, search and rescue, environmental monitoring, military surveillance, film production, infrastructure inspection, and emergency response.'},
+  {cat:'basics',q:'How do drones fly?',a:'Multi-rotors spin opposite propeller pairs at varying speeds. The flight controller reads gyroscope and accelerometer data thousands of times per second and adjusts each motor to maintain stability. GPS holds position when hovering.'},
+  {cat:'basics',q:'How far can a consumer drone fly?',a:'Most consumer drones reach 5-12km. Regulations in almost every country limit you to visual line of sight (VLOS), typically 500m-1km in practice. Long-range FPV builds can exceed 40km in uncontrolled conditions.'},
+  {cat:'setup',q:'How do I set up a drone for the first time?',a:'Inspect for damage. Charge battery fully. Download the manufacturer app. Power on drone and remote. Pair them (binding). Register and activate. Calibrate compass and IMU. Update firmware. Pre-flight checklist: battery, props, GPS lock, no-fly zone check, wind conditions.'},
+  {cat:'setup',q:'What is IMU calibration and why does it matter?',a:'The IMU (Inertial Measurement Unit) detects orientation and acceleration. Calibration defines what level and still means. A bad calibration causes drifting or unstable flight. Calibrate on a flat surface, away from metal and interference sources.'},
+  {cat:'setup',q:'What is compass calibration?',a:'Compass calibration maps local magnetic north for accurate GPS flight. Rotate the drone in specific orientations while the controller records data. Do this in a new far location, after firmware updates, or if compass errors appear. Avoid calibrating near metal structures or power lines.'},
+  {cat:'setup',q:'How do I bind a remote controller?',a:'Power on drone first, then remote. In the app, go to Remote Controller settings and select Link Remote. The drone enters pairing mode (flashing LED). Confirm in app or press bind button. Both devices should show solid connection lights. Test stick inputs before flying.'},
+  {cat:'setup',q:'What should I check before every flight?',a:'Battery above 50%. Props tight, undamaged, correct CW/CCW positions. Remote charged. Minimum 8 GPS satellites. No app warnings. Wind within drone limits. Area clear. Return-to-Home altitude set above surrounding obstacles. Correct flight mode selected.'},
+  {cat:'setup',q:'What flight modes do drones have?',a:'GPS mode: Position-hold, stable, beginner-friendly. Attitude mode: No GPS assist, manual stability only. Sport mode: Higher speeds, reduced avoidance. ATTI/Manual: Full pilot control for FPV. Most apps also include Cinematic, Normal, and Tripod modes for photography.'},
+  {cat:'repair',q:'My drone won\'t take off. What do I check?',a:'Check motor/prop for obstruction or damage. Battery correctly seated and charged. App for IMU or compass errors (recalibrate if yes). All motors spin freely by hand. If one motor won\'t spin during startup, the ESC for that motor is likely faulty.'},
+  {cat:'repair',q:'How do I replace a broken motor?',a:'Order matching motor spec (KV rating, stator size). Remove prop. Unscrew motor from arm. Disconnect from ESC. Connect replacement matching original wire color code. Test spin direction in configurator. Reverse two wires if direction is wrong. Reattach prop and test fly carefully.'},
+  {cat:'repair',q:'What is an ESC and what does it do?',a:'ESC (Electronic Speed Controller) converts DC battery power into three-phase AC signals that control brushless motor speed and direction. Each motor has its own ESC. Inconsistent or non-spinning motors often indicate ESC failure. Always match amperage rating to or above the motor\'s peak draw.'},
+  {cat:'repair',q:'Why does my drone drift in one direction?',a:'1. Recalibrate IMU on a perfectly flat surface. 2. Recalibrate compass away from metal. 3. Check correct CW/CCW prop placement. 4. Check for bent or cracked prop blades. 5. Review PID tuning in Betaflight or your configurator. Some drift in wind is normal in non-GPS modes.'},
+  {cat:'repair',q:'How often should I replace propellers?',a:'Inspect after every crash and before every flight. Replace immediately on any crack, chip, deformation, wobble, or deep scratch. Even minor damage causes vibration that damages motors and ruins footage. Replace proactively every 20-30 flight hours under regular use.'},
+  {cat:'tech',q:'How does obstacle avoidance work?',a:'Sensors detect objects in the flight path: stereo vision cameras, infrared time-of-flight, LiDAR, or ultrasonic. The drone stops, reroutes, or alerts. High-end drones offer omnidirectional sensing. Entry-level may only have forward and downward sensors. Does not reliably detect thin wires or cables.'},
+  {cat:'tech',q:'What is FPV flying?',a:'First Person View — you fly through a live camera feed to goggles with 1-4ms latency, versus the 1-3 second delay on a phone screen. Used for racing, freestyle aerobatics, and cinematic proximity work. Popular systems: DJI O3, HDZero, Walksnail Avatar, and analog.'},
+  {cat:'tech',q:'What is RTK GPS?',a:'Real-Time Kinematic GPS provides centimeter-level accuracy vs the 2-5 meter accuracy of standard GPS. A ground base station sends atmospheric correction signals to the drone. Essential for precision agriculture, surveying, construction monitoring, and corridor mapping.'},
+  {cat:'tech',q:'What is LiDAR on a drone?',a:'LiDAR fires laser pulses and measures return time to build precise 3D point clouds. Used for topographic mapping, forestry, powerline inspection, and GPS-denied navigation. Penetrates vegetation better than cameras. Payloads typically cost $10,000-$100,000+.'},
+  {cat:'tech',q:'What technology do leading companies use?',a:'DJI: O3+ transmission, APAS 5.0 omnidirectional avoidance, ActiveTrack. Skydio: AI neural network 360-degree obstacle avoidance. Parrot: Open-source FreeFlight, EU military ecosystem. XAG: Precision variable-rate agricultural spraying. Zipline: Fixed-wing delivery at 160km range. Quantum Systems: VTOL hybrid for military ISR.'},
+  {cat:'tech',q:'What is the difference between analog and digital FPV?',a:'Analog FPV: cheap, sub-1ms latency, lower resolution with interference artifacts. Digital FPV (DJI O3, HDZero, Walksnail): HD or 4K, 4-40ms latency, more expensive. Analog dominates racing; digital is taking over cinematic FPV.'},
+  {cat:'regs',q:'Do I need a license to fly a drone?',a:'USA: Under 250g — registration only (no license) for recreation. Commercial requires FAA Part 107. India: All drones except nano require registration and UIN. Commercial needs RPAS Pilot Certificate. EU: Under 250g in Open A1 has minimal requirements. Above 250g requires EU drone pilot certificate.'},
+  {cat:'regs',q:'What is a no-fly zone?',a:'Airspace where drone flight is restricted: airport zones (typically 5km radius), military bases, national parks, prisons, nuclear facilities, crowd events, emergency areas. Most drone apps show geofenced zones and will warn or prevent entry. Flying in an NFZ without authorization is a criminal offence in most countries.'},
+  {cat:'regs',q:'What is BVLOS and when is it allowed?',a:'Beyond Visual Line of Sight — flying beyond unaided visual range. Required for delivery, pipeline inspection, and corridor surveys. Currently requires specific waivers from aviation authorities in most countries, plus sense-and-avoid systems and ATC integration. Regulations are evolving rapidly globally.'},
+  {cat:'regs',q:'Do drones need insurance?',a:'EU: Third-party liability insurance mandatory above 250g. India: Required for commercial RPAS operators. USA: No federal mandate but strongly recommended. Drone-specific insurance offered by Coverdrone, SkyWatch, and Flock. For commercial operations anywhere, insurance is essential.'},
+  {cat:'regs',q:'Can I fly a drone at night?',a:'Night flying rules vary by country. USA: FAA Part 107 allows night flying with anti-collision lighting visible 3 statute miles. India: Night BVLOS generally restricted. EU: Night flight in Open category requires specific anti-collision lights. Always verify with your local aviation authority.'},
+  {cat:'pricing',q:'How much does a drone cost?',a:'Under $200: Entry-level (Holy Stone, Tello). $200-800: Mid-range (DJI Mini 3, Autel Nano) — excellent for beginners. $800-3,000: Prosumer (DJI Air 3, Mavic 3 Classic) — cinema quality. $3,000-20,000: Professional (DJI Inspire 3, Matrice series). $20,000+: Industrial, agricultural, and defence systems.'},
+  {cat:'pricing',q:'What is the best drone for a beginner?',a:'DJI Mini 3 or Mini 4 Pro — under 249g (fewer regulatory requirements in most countries), GPS, obstacle avoidance, excellent camera, straightforward app. Budget option: DJI Mini 2 SE. For pure learning before investing in a quality drone, a cheap practice quad under $50 is worth considering.'},
+  {cat:'pricing',q:'DJI or another brand?',a:'DJI holds roughly 70% of the global market for good reason. Alternatives: Autel Robotics (USA-based, no geofencing). Skydio (best autonomous AI avoidance, strong US government use). Parrot (France, EU defence and enterprise). For government and defence, non-DJI platforms are increasingly required for data security reasons.'},
+  {cat:'advanced',q:'What is waypoint mission planning?',a:'Pre-programmed flight paths executed autonomously. Set waypoints on a map with altitude, speed, camera actions, and heading. The drone follows the mission without manual input. Used for repeatable surveying, inspection, and monitoring. Platforms include DJI FlightHub 2, DJI Pilot 2, Pix4Dcapture, and DroneDeploy.'},
+  {cat:'advanced',q:'How does drone photogrammetry work?',a:'Hundreds of overlapping images are processed by computer vision algorithms to reconstruct accurate 3D models and 2D orthomosaic maps. The drone flies a grid pattern with 70-80% image overlap. Software (Pix4D, DroneDeploy, Metashape, WebODM) stitches images into point clouds and DEMs. Used in construction, mining, archaeology, and surveying.'},
+  {cat:'advanced',q:'What is a drone swarm?',a:'A coordinated fleet of drones under centralized or decentralized AI control. Applications: synchronized light shows, area search operations, and military distributed engagement. Requires mesh communication networks and collision-avoidance algorithms. One of the most active frontiers in drone R&D.'},
+  {cat:'advanced',q:'What is geofencing?',a:'Geofencing uses GPS coordinates to create virtual boundaries restricting where a drone can fly. Manufacturers embed NFZ geofence data so drones slow or stop near restricted airspace. Commercial operators can apply for temporary geofence unlocks for legitimate operations in restricted zones.'},
+  {cat:'advanced',q:'What is return-to-home (RTH)?',a:'RTH automatically flies the drone back to its takeoff point when battery is critically low, signal is lost, or the pilot triggers it manually. Set RTH altitude well above all surrounding obstacles before each flight. Always verify the home point is correctly set after powering on.'},
+];
+
+const CAT_LABELS={basics:'Drone Basics',setup:'Setup and First Flight',repair:'Repair and Maintenance',tech:'Technology',regs:'Regulations',pricing:'Pricing and Buying',advanced:'Advanced Operations'};
+let activeCat='all',searchTerm='';
+
+function renderFAQ(){
+  const list=document.getElementById('faqList');
+  let filtered=FAQ_DATA;
+  if(activeCat!=='all') filtered=filtered.filter(i=>i.cat===activeCat);
+  if(searchTerm){const s=searchTerm.toLowerCase();filtered=filtered.filter(i=>i.q.toLowerCase().includes(s)||i.a.toLowerCase().includes(s));}
+  if(!filtered.length){list.innerHTML='<div class="no-results">No matching questions. Try the AI assistant.</div>';return;}
+  const groups={};
+  filtered.forEach(item=>{if(!groups[item.cat])groups[item.cat]=[];groups[item.cat].push(item);});
+  list.innerHTML='';
+  for(const cat of Object.keys(groups)){
+    if(activeCat==='all'){const lbl=document.createElement('div');lbl.className='faq-category-label';lbl.textContent=CAT_LABELS[cat];list.appendChild(lbl);}
+    groups[cat].forEach(item=>{
+      const div=document.createElement('div');div.className='faq-item';
+      div.innerHTML=`<div class="faq-q" onclick="toggleFAQ(this)"><span class="faq-q-text">${item.q}</span><span class="faq-chevron">▾</span></div><div class="faq-a"><div class="faq-a-inner">${item.a}<br><button class="ask-chat-btn" onclick="sendToChat('${item.q.replace(/'/g,"\\'")}')">💬 Ask follow-up in AI chat →</button></div></div>`;
+      list.appendChild(div);
+    });
+  }
+}
+function toggleFAQ(el){const item=el.closest('.faq-item');const wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!wasOpen)item.classList.add('open');}
+function filterCat(cat,tab){activeCat=cat;document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');renderFAQ();}
+function filterFAQ(){searchTerm=document.getElementById('faqSearch').value;renderFAQ();}
+renderFAQ();
+
+// ===== CHATBOT =====
+const SYSTEM_PROMPT=`You are the drones.help AI Assistant — knowledgeable, friendly, and professional.
+
+Your roles:
+1. Answer drone questions accurately and concisely
+2. Understand what the visitor wants to accomplish
+3. Guide them to the right resource on drones.help (tutorials, encyclopaedia, certification courses, regulations hub, pricing)
+4. Capture lead information naturally — never all at once
+5. Escalate to human for: complaints, enterprise pricing, legal specifics, safety incidents
+
+Personality: Direct and warm. No filler phrases like "Great question!" — get to the answer. Short sentences. Real information.
+
+Lead qualification — weave in naturally across the conversation:
+- Flying recreationally or commercially?
+- Experience level?
+- Which drone model (for setup/repair)?
+- Primary goal?
+- Email only if they express strong buying intent or want follow-up
+
+Keep answers concise (3-5 sentences for simple questions; structured lists for complex ones). Reference drones.help sections when relevant. Be honest when something needs a human expert.
+
+Escalation script: "This one deserves a proper answer from our team. What is the best email to reach you?"`;
+
+let chatHistory=[],isTyping=false;
+
+function addMsg(role,text){
+  const msgs=document.getElementById('chatMessages');
+  const div=document.createElement('div');div.className=`msg ${role}`;
+  const av=role==='bot'?'<div class="msg-avatar">🤖</div>':'<div class="msg-avatar">You</div>';
+  const escaped=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  div.innerHTML=`${av}<div class="msg-bubble">${escaped}</div>`;
+  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
+}
+function showTyping(){
+  const msgs=document.getElementById('chatMessages');
+  const div=document.createElement('div');div.className='msg bot';div.id='typing-ind';
+  div.innerHTML='<div class="msg-avatar">🤖</div><div class="msg-bubble typing"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>';
+  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
+}
+function hideTyping(){const t=document.getElementById('typing-ind');if(t)t.remove();}
+function setQR(replies){
+  const qr=document.getElementById('quickReplies');qr.innerHTML='';
+  replies.forEach(r=>{const btn=document.createElement('button');btn.className='qr-btn';btn.textContent=r;btn.onclick=()=>{setQR([]);sendMessage(r);};qr.appendChild(btn);});
+}
+async function sendMessage(override){
+  const input=document.getElementById('chatInput');
+  const text=override||input.value.trim();
+  if(!text||isTyping)return;
+  input.value='';setQR([]);addMsg('user',text);
+  chatHistory.push({role:'user',content:text});
+  isTyping=true;showTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM_PROMPT,messages:chatHistory})});
+    const data=await res.json();hideTyping();
+    const reply=data.content?.[0]?.text||'Sorry, I could not get a response. Please try again.';
+    chatHistory.push({role:'assistant',content:reply});addMsg('bot',reply);
+    const lower=text.toLowerCase();
+    if(lower.includes('beginn')||lower.includes('first')||lower.includes('start'))setQR(['Best starter drone?','How to set up my first drone?','What license do I need?']);
+    else if(lower.includes('repair')||lower.includes('fix')||lower.includes('broken'))setQR(['My motor won\'t spin','Drone drifts left','Replace a propeller?']);
+    else if(lower.includes('regulat')||lower.includes('law')||lower.includes('licens'))setQR(['Rules in India','FAA Part 107 overview','Do I need insurance?']);
+    else if(lower.includes('buy')||lower.includes('price')||lower.includes('cost'))setQR(['Best drones under $500','DJI vs Autel','Professional drone options']);
+    else setQR(['Setup help','Repair guide','Regulations','View pricing plans']);
+  }catch(e){hideTyping();addMsg('bot','Having trouble connecting right now. Please try again in a moment.');}
+  isTyping=false;
+}
+function sendToChat(q){
+  document.getElementById('chatInput').value=q;
+  document.getElementById('faq').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>sendMessage(),400);
+}
+setTimeout(()=>{
+  addMsg('bot','Hi there! I am the drones.help assistant.\n\nSetup help, repair advice, drone comparisons, regulations — ask me anything and I will point you in the right direction.');
+  setQR(['I\'m a complete beginner','Need help fixing my drone','Comparing drone models','Questions about regulations']);
+},500);
+</script>
+</body>
+</html>
