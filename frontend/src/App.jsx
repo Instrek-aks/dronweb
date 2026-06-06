@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 // ===== FAQ DATA =====
 const FAQ_DATA = [
@@ -49,6 +50,49 @@ const CAT_LABELS = {
   advanced: 'Advanced Operations'
 };
 
+const WEBSITE_CONTEXT = `
+ABOUT DRONES.HELP:
+Global Drone Intelligence Hub. The world's most comprehensive drone learning and intelligence platform. Built for everyone from first-time flyers to defence engineers.
+Stats: 1,400+ Drone models catalogued, 320+ Step-by-step tutorials, 80+ Manufacturers covered, 46 Countries with regulations.
+
+SERVICES OFFERED:
+- Setup Tutorials: Guided setup for 500+ models. Remote binding, IMU calibration, flight mode configuration.
+- Repair and Diagnostics: Fix motor failures, replace ESCs, resolder boards, troubleshoot crashes.
+- Technology Deep Dives: Obstacle avoidance, LiDAR, FPV signal stacks, autopilot firmware.
+- Drone Model Encyclopaedia: Spec sheets, sensor payloads, competitor comparisons for 1,400+ drones.
+- Company and Tech Intelligence: In-depth profiles on 80+ manufacturers.
+- Regulations by Country: Regulations, licensing, no-fly zones for 46 countries.
+- Certification Prep: Courses aligned to FAA Part 107, DGCA India, EU A1/A2/A3, and BVLOS.
+- Custom Build Guides: Component selection, BOMs for FPV freestyle, long-range.
+- Expert Q&A Community: Verified answers from certified drone engineers.
+
+DRONE CATEGORIES COVERED:
+- Consumer Quadcopters (DJI Mini, Autel Evo Nano, Holy Stone)
+- Professional Cinema Drones (DJI Inspire, Freefly Alta)
+- Agricultural Drones (DJI Agras, XAG P100, Hylio AG-272)
+- FPV and Racing Drones (Custom 5-inch, TinyWhoops)
+- Fixed-Wing and VTOL (WingtraOne, SenseFly eBee)
+- Defence and Surveillance UAVs (Military-grade UAVs, loitering munitions)
+- Cargo and Delivery Drones (Wing, Zipline, Manna Aero)
+- Industrial Inspection Drones (Thermal, LiDAR, gas-sensor)
+
+KEY COMPANIES AND TECHNOLOGIES PROFILED:
+- DJI (China): OcuSync O3+, APAS 5.0, ActiveTrack, 4K Gimbal
+- Autel Robotics (USA): SkyLink Transmission, LiDAR Avoidance, HDR Imaging
+- Skydio (USA): AI Autonomy Engine, 360 Obstacle Avoidance, Keyframe
+- Parrot Group (France): FreeFlight 7, ANAFI Thermal, Pix4D Integration
+- senseFly (Trimble) (Switzerland): Fixed-Wing Autopilot, PPK RTK GPS, eMotion Software
+- Zipline (USA): Fixed-Wing Delivery, Autonomous Dispatch, Platform 2 Droid
+- XAG (China): RealTerra 3D Mapping, Precision Spraying, 5G RTK
+- Quantum Systems (Germany): Vector VTOL, AI Sensor Fusion, BVLOS Certified
+- Percepto (Israel): Drone-in-a-Box, AIM Platform, Thermal Analytics
+
+PRICING PLANS (Start free. Upgrade anytime.):
+- Free ($0): 50 setup tutorials, basic encyclopaedia, community forum, regulations (10 countries).
+- Pro ($19/month billed annually): All 320+ tutorials, full encyclopaedia, repair library, full regulations (46 countries), build guides, certification prep, priority Q&A.
+- Enterprise ($79/month, up to 10 seats): Everything in Pro + team management dashboard, custom training, API access, dedicated account manager.
+`;
+
 const SYSTEM_PROMPT = `You are the drones.help AI Assistant — knowledgeable, friendly, and professional.
 
 Your roles:
@@ -57,6 +101,15 @@ Your roles:
 3. Guide them to the right resource on drones.help (tutorials, encyclopaedia, certification courses, regulations hub, pricing)
 4. Capture lead information naturally — never all at once
 5. Escalate to human for: complaints, enterprise pricing, legal specifics, safety incidents
+
+CRITICAL INSTRUCTION:
+You MUST ONLY answer questions using the information provided in the Website Knowledge Base below. Do NOT use outside knowledge to answer questions. If a question cannot be answered using the Knowledge Base, politely say you do not have that information and suggest they check the community forums or contact a human expert.
+
+Website Knowledge Base (General Info & Services):
+${WEBSITE_CONTEXT}
+
+Website Knowledge Base (FAQ):
+${FAQ_DATA.map(item => `Q: ${item.q}\nA: ${item.a}`).join('\n\n')}
 
 Personality: Direct and warm. No filler phrases like "Great question!" — get to the answer. Short sentences. Real information.
 
@@ -768,12 +821,7 @@ export default function App() {
                     {msg.role === 'bot' ? '🤖' : 'You'}
                   </div>
                   <div className="msg-bubble">
-                    {msg.content.split('\n').map((line, lIdx) => (
-                      <React.Fragment key={lIdx}>
-                        {line}
-                        {lIdx < msg.content.split('\n').length - 1 && <br />}
-                      </React.Fragment>
-                    ))}
+                    <ReactMarkdown>{msg.content}</ReactMarkdown>
                   </div>
                 </div>
               ))}
