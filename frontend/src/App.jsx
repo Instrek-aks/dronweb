@@ -182,6 +182,13 @@ export default function App() {
         })
       });
 
+      if (!res.ok) {
+        if (res.status === 429) {
+          throw new Error('The AI is receiving too many requests right now. Please wait a minute and try again.');
+        }
+        throw new Error('Having trouble connecting right now. Please try again in a moment.');
+      }
+
       const data = await res.json();
       const reply = data.content?.[0]?.text || 'Sorry, I could not get a response. Please try again.';
       
@@ -205,7 +212,7 @@ export default function App() {
     } catch (e) {
       setMessages((prev) => [
         ...prev,
-        { role: 'bot', content: 'Having trouble connecting right now. Please try again in a moment.' }
+        { role: 'bot', content: e.message || 'Having trouble connecting right now. Please try again in a moment.' }
       ]);
     } finally {
       setIsTyping(false);
