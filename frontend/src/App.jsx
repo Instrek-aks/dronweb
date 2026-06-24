@@ -20,18 +20,18 @@ const FAQ_DATA = [
   { cat: 'repair', q: 'Why does my drone drift in one direction?', a: '1. Recalibrate IMU on a perfectly flat surface. 2. Recalibrate compass away from metal. 3. Check correct CW/CCW prop placement. 4. Check for bent or cracked prop blades. 5. Review PID tuning in Betaflight or your configurator. Some drift in wind is normal in non-GPS modes.' },
   { cat: 'repair', q: 'How often should I replace propellers?', a: 'Inspect after every crash and before every flight. Replace immediately on any crack, chip, deformation, wobble, or deep scratch. Even minor damage causes vibration that damages motors and ruins footage. Replace proactively every 20-30 flight hours under regular use.' },
   { cat: 'tech', q: 'How does obstacle avoidance work?', a: 'Sensors detect objects in the flight path: stereo vision cameras, infrared time-of-flight, LiDAR, or ultrasonic. The drone stops, reroutes, or alerts. High-end drones offer omnidirectional sensing. Entry-level may only have forward and downward sensors. Does not reliably detect thin wires or cables.' },
-  { cat: 'tech', q: 'What is FPV flying?', a: 'First Person View — you fly through a live camera feed to goggles with 1-4ms latency, versus the 1-3 second delay on a phone screen. Used for racing, freestyle aerobatics, and cinematic proximity work. Popular systems: DJI O3, HDZero, Walksnail Avatar, and analog.' },
+  { cat: 'tech', q: 'What is FPV flying?', a: 'First Person View - you fly through a live camera feed to goggles with 1-4ms latency, versus the 1-3 second delay on a phone screen. Used for racing, freestyle aerobatics, and cinematic proximity work. Popular systems: DJI O3, HDZero, Walksnail Avatar, and analog.' },
   { cat: 'tech', q: 'What is RTK GPS?', a: 'Real-Time Kinematic GPS provides centimeter-level accuracy vs the 2-5 meter accuracy of standard GPS. A ground base station sends atmospheric correction signals to the drone. Essential for precision agriculture, surveying, construction monitoring, and corridor mapping.' },
   { cat: 'tech', q: 'What is LiDAR on a drone?', a: 'LiDAR fires laser pulses and measures return time to build precise 3D point clouds. Used for topographic mapping, forestry, powerline inspection, and GPS-denied navigation. Penetrates vegetation better than cameras. Payloads typically cost $10,000-$100,000+.' },
   { cat: 'tech', q: 'What technology do leading companies use?', a: 'DJI: O3+ transmission, APAS 5.0 omnidirectional avoidance, ActiveTrack. Skydio: AI neural network 360-degree obstacle avoidance. Parrot: Open-source FreeFlight, EU military ecosystem. XAG: Precision variable-rate agricultural spraying. Zipline: Fixed-wing delivery at 160km range. Quantum Systems: VTOL hybrid for military ISR.' },
   { cat: 'tech', q: 'What is the difference between analog and digital FPV?', a: 'Analog FPV: cheap, sub-1ms latency, lower resolution with interference artifacts. Digital FPV (DJI O3, HDZero, Walksnail): HD or 4K, 4-40ms latency, more expensive. Analog dominates racing; digital is taking over cinematic FPV.' },
-  { cat: 'regs', q: 'Do I need a license to fly a drone?', a: 'USA: Under 250g — registration only (no license) for recreation. Commercial requires FAA Part 107. India: All drones except nano require registration and UIN. Commercial needs RPAS Pilot Certificate. EU: Under 250g in Open A1 has minimal requirements. Above 250g requires EU drone pilot certificate.' },
+  { cat: 'regs', q: 'Do I need a license to fly a drone?', a: 'USA: Under 250g - registration only (no license) for recreation. Commercial requires FAA Part 107. India: All drones except nano require registration and UIN. Commercial needs RPAS Pilot Certificate. EU: Under 250g in Open A1 has minimal requirements. Above 250g requires EU drone pilot certificate.' },
   { cat: 'regs', q: 'What is a no-fly zone?', a: 'Airspace where drone flight is restricted: airport zones (typically 5km radius), military bases, national parks, prisons, nuclear facilities, crowd events, emergency areas. Most drone apps show geofenced zones and will warn or prevent entry. Flying in an NFZ without authorization is a criminal offence in most countries.' },
-  { cat: 'regs', q: 'What is BVLOS and when is it allowed?', a: 'Beyond Visual Line of Sight — flying beyond unaided visual range. Required for delivery, pipeline inspection, and corridor surveys. Currently requires specific waivers from aviation authorities in most countries, plus sense-and-avoid systems and ATC integration. Regulations are evolving rapidly globally.' },
+  { cat: 'regs', q: 'What is BVLOS and when is it allowed?', a: 'Beyond Visual Line of Sight - flying beyond unaided visual range. Required for delivery, pipeline inspection, and corridor surveys. Currently requires specific waivers from aviation authorities in most countries, plus sense-and-avoid systems and ATC integration. Regulations are evolving rapidly globally.' },
   { cat: 'regs', q: 'Do drones need insurance?', a: 'EU: Third-party liability insurance mandatory above 250g. India: Required for commercial RPAS operators. USA: No federal mandate but strongly recommended. Drone-specific insurance offered by Coverdrone, SkyWatch, and Flock. For commercial operations anywhere, insurance is essential.' },
   { cat: 'regs', q: 'Can I fly a drone at night?', a: 'Night flying rules vary by country. USA: FAA Part 107 allows night flying with anti-collision lighting visible 3 statute miles. India: Night BVLOS generally restricted. EU: Night flight in Open category requires specific anti-collision lights. Always verify with your local aviation authority.' },
-  { cat: 'pricing', q: 'How much does a drone cost?', a: 'Under $200: Entry-level (Holy Stone, Tello). $200-800: Mid-range (DJI Mini 3, Autel Nano) — excellent for beginners. $800-3,000: Prosumer (DJI Air 3, Mavic 3 Classic) — cinema quality. $3,000-20,000: Professional (DJI Inspire 3, Matrice series). $20,000+: Industrial, agricultural, and defence systems.' },
-  { cat: 'pricing', q: 'What is the best drone for a beginner?', a: 'DJI Mini 3 or Mini 4 Pro — under 249g (fewer regulatory requirements in most countries), GPS, obstacle avoidance, excellent camera, straightforward app. Budget option: DJI Mini 2 SE. For pure learning before investing in a quality drone, a cheap practice quad under $50 is worth considering.' },
+  { cat: 'pricing', q: 'How much does a drone cost?', a: 'Under $200: Entry-level (Holy Stone, Tello). $200-800: Mid-range (DJI Mini 3, Autel Nano) - excellent for beginners. $800-3,000: Prosumer (DJI Air 3, Mavic 3 Classic) - cinema quality. $3,000-20,000: Professional (DJI Inspire 3, Matrice series). $20,000+: Industrial, agricultural, and defence systems.' },
+  { cat: 'pricing', q: 'What is the best drone for a beginner?', a: 'DJI Mini 3 or Mini 4 Pro - under 249g (fewer regulatory requirements in most countries), GPS, obstacle avoidance, excellent camera, straightforward app. Budget option: DJI Mini 2 SE. For pure learning before investing in a quality drone, a cheap practice quad under $50 is worth considering.' },
   { cat: 'pricing', q: 'DJI or another brand?', a: 'DJI holds roughly 70% of the global market for good reason. Alternatives: Autel Robotics (USA-based, no geofencing). Skydio (best autonomous AI avoidance, strong US government use). Parrot (France, EU defence and enterprise). For government and defence, non-DJI platforms are increasingly required for data security reasons.' },
   { cat: 'advanced', q: 'What is waypoint mission planning?', a: 'Pre-programmed flight paths executed autonomously. Set waypoints on a map with altitude, speed, camera actions, and heading. The drone follows the mission without manual input. Used for repeatable surveying, inspection, and monitoring. Platforms include DJI FlightHub 2, DJI Pilot 2, Pix4Dcapture, and DroneDeploy.' },
   { cat: 'advanced', q: 'How does drone photogrammetry work?', a: 'Hundreds of overlapping images are processed by computer vision algorithms to reconstruct accurate 3D models and 2D orthomosaic maps. The drone flies a grid pattern with 70-80% image overlap. Software (Pix4D, DroneDeploy, Metashape, WebODM) stitches images into point clouds and DEMs. Used in construction, mining, archaeology, and surveying.' },
@@ -93,13 +93,13 @@ PRICING PLANS (Start free. Upgrade anytime.):
 - Enterprise ($79/month, up to 10 seats): Everything in Pro + team management dashboard, custom training, API access, dedicated account manager.
 `;
 
-const SYSTEM_PROMPT = `You are the drones.help AI Assistant — knowledgeable, friendly, and professional.
+const SYSTEM_PROMPT = `You are the drones.help AI Assistant - knowledgeable, friendly, and professional.
 
 Your roles:
 1. Answer drone questions accurately and concisely
 2. Understand what the visitor wants to accomplish
 3. Guide them to the right resource on drones.help (tutorials, encyclopaedia, certification courses, regulations hub, pricing)
-4. Capture lead information naturally — never all at once
+4. Capture lead information naturally - never all at once
 5. Escalate to human for: complaints, enterprise pricing, legal specifics, safety incidents
 
 CRITICAL INSTRUCTION:
@@ -111,9 +111,9 @@ ${WEBSITE_CONTEXT}
 Website Knowledge Base (FAQ):
 ${FAQ_DATA.map(item => `Q: ${item.q}\nA: ${item.a}`).join('\n\n')}
 
-Personality: Direct and warm. No filler phrases like "Great question!" — get to the answer. Short sentences. Real information.
+Personality: Direct and warm. No filler phrases like "Great question!" - get to the answer. Short sentences. Real information.
 
-Lead qualification — weave in naturally across the conversation:
+Lead qualification - weave in naturally across the conversation:
 - Flying recreationally or commercially?
 - Experience level?
 - Which drone model (for setup/repair)?
@@ -137,7 +137,7 @@ export default function App() {
   const [messages, setMessages] = useState([
     {
       role: 'bot',
-      content: "Hi there! I am the drones.help assistant.\n\nSetup help, repair advice, drone comparisons, regulations — ask me anything and I will point you in the right direction."
+      content: "Hi there! I am the drones.help assistant.\n\nSetup help, repair advice, drone comparisons, regulations - ask me anything and I will point you in the right direction."
     }
   ]);
   const [quickReplies, setQuickReplies] = useState([
@@ -220,30 +220,63 @@ export default function App() {
         content: msg.content
       }));
 
-      // Use Netlify function in production, fallback to local server in development
-      const apiEndpoint = import.meta.env.PROD 
-        ? '/.netlify/functions/chat' 
-        : (import.meta.env.VITE_API_URL || 'http://localhost:5000/api/chat');
-      const res = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          system: SYSTEM_PROMPT,
-          messages: apiMessages
-        })
-      });
+      let reply = '';
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
-      if (!res.ok) {
-        if (res.status === 429) {
-          throw new Error('The AI is receiving too many requests right now. Please wait a minute and try again.');
+      if (apiKey) {
+        // Format messages for Gemini API
+        const geminiMessages = apiMessages.map((msg) => ({
+          role: msg.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: msg.content }]
+        }));
+
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            systemInstruction: {
+              parts: [{ text: SYSTEM_PROMPT }]
+            },
+            contents: geminiMessages,
+          })
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error(`Gemini API Error (Status ${response.status}):`, errorText);
+          throw new Error(`Error from Gemini API: ${response.statusText}`);
         }
-        throw new Error('Having trouble connecting right now. Please try again in a moment.');
-      }
 
-      const data = await res.json();
-      const reply = data.content?.[0]?.text || 'Sorry, I could not get a response. Please try again.';
+        const data = await response.json();
+        reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not get a response.';
+      } else {
+        // Use Netlify function in production, fallback to local server in development
+        const apiEndpoint = import.meta.env.PROD 
+          ? '/.netlify/functions/chat' 
+          : (import.meta.env.VITE_API_URL || 'http://localhost:5000/api/chat');
+        const res = await fetch(apiEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            system: SYSTEM_PROMPT,
+            messages: apiMessages
+          })
+        });
+
+        if (!res.ok) {
+          if (res.status === 429) {
+            throw new Error('The AI is receiving too many requests right now. Please wait a minute and try again.');
+          }
+          throw new Error('Having trouble connecting right now. Please try again in a moment.');
+        }
+
+        const data = await res.json();
+        reply = data.content?.[0]?.text || 'Sorry, I could not get a response. Please try again.';
+      }
       
       setMessages((prev) => [...prev, { role: 'bot', content: reply }]);
 
@@ -317,7 +350,7 @@ export default function App() {
             Your complete guide to <em>every drone</em> on earth
           </h1>
           <p className="hero-sub">
-            Setup tutorials, repair guides, technology deep-dives, and an encyclopaedia of every drone model and manufacturer — plus an AI assistant that answers instantly.
+            Setup tutorials, repair guides, technology deep-dives, and an encyclopaedia of every drone model and manufacturer - plus an AI assistant that answers instantly.
           </p>
           <div className="hero-actions">
             <a href="#services" className="btn-primary">Explore Tutorials</a>
@@ -406,7 +439,7 @@ export default function App() {
         <div className="section-label">What we offer</div>
         <h2 className="section-title">Everything you need to know about drones</h2>
         <p className="section-sub">
-          From first-time setup to advanced electronics repair — expert-authored content for every stage of your drone journey.
+          From first-time setup to advanced electronics repair - expert-authored content for every stage of your drone journey.
         </p>
         <div className="services-grid">
           <div className="service-card">
@@ -424,7 +457,7 @@ export default function App() {
           <div className="service-card">
             <div className="service-icon bg-green">📡</div>
             <h3>Technology Deep Dives</h3>
-            <p>How obstacle avoidance, LiDAR, FPV signal stacks, and autopilot firmware work — explained for pilots and engineers alike.</p>
+            <p>How obstacle avoidance, LiDAR, FPV signal stacks, and autopilot firmware work - explained for pilots and engineers alike.</p>
             <span className="service-tag">Technical</span>
           </div>
           <div className="service-card">
@@ -442,7 +475,7 @@ export default function App() {
           <div className="service-card">
             <div className="service-icon bg-pink">🌍</div>
             <h3>Regulations by Country</h3>
-            <p>Drone regulations, licensing requirements, no-fly zones, and import restrictions for 46 countries — updated quarterly.</p>
+            <p>Drone regulations, licensing requirements, no-fly zones, and import restrictions for 46 countries - updated quarterly.</p>
             <span className="service-tag">Compliance</span>
           </div>
           <div className="service-card">
@@ -470,7 +503,7 @@ export default function App() {
       <section className="how-it-works" id="how">
         <div className="section-label">How it works</div>
         <h2 className="section-title">From zero to flying in four steps</h2>
-        <p className="section-sub">Structured learning paths from unboxing to certified pilot — without the overwhelm.</p>
+        <p className="section-sub">Structured learning paths from unboxing to certified pilot - without the overwhelm.</p>
         <div className="steps-grid">
           <div className="step-connector"></div>
           <div className="step">
@@ -486,7 +519,7 @@ export default function App() {
           <div className="step">
             <div className="step-num">03</div>
             <h4>Learn the Tech</h4>
-            <p>Understand every component — sensors, firmware, protocols, and flight physics.</p>
+            <p>Understand every component - sensors, firmware, protocols, and flight physics.</p>
           </div>
           <div className="step">
             <div className="step-num">04</div>
@@ -506,7 +539,7 @@ export default function App() {
             <div className="type-img bg-blue">🚁</div>
             <div>
               <h3>Consumer Quadcopters</h3>
-              <p>DJI Mini series, Autel Evo Nano, Holy Stone — setup, calibration, and photography guides.</p>
+              <p>DJI Mini series, Autel Evo Nano, Holy Stone - setup, calibration, and photography guides.</p>
             </div>
           </div>
           <div className="type-card">
@@ -520,7 +553,7 @@ export default function App() {
             <div className="type-img bg-green">🌾</div>
             <div>
               <h3>Agricultural Drones</h3>
-              <p>DJI Agras, XAG P100, Hylio AG-272 — spraying, multispectral imaging, and precision agriculture.</p>
+              <p>DJI Agras, XAG P100, Hylio AG-272 - spraying, multispectral imaging, and precision agriculture.</p>
             </div>
           </div>
           <div className="type-card">
@@ -548,7 +581,7 @@ export default function App() {
             <div className="type-img bg-blue">📦</div>
             <div>
               <h3>Cargo and Delivery Drones</h3>
-              <p>Wing, Zipline, Manna Aero — payload systems, route planning, and UTM integration.</p>
+              <p>Wing, Zipline, Manna Aero - payload systems, route planning, and UTM integration.</p>
             </div>
           </div>
           <div className="type-card">
@@ -569,7 +602,7 @@ export default function App() {
         <div className="tech-grid">
           <div className="tech-card">
             <div className="tech-company-name">DJI</div>
-            <div className="tech-country">China — Consumer and Professional</div>
+            <div className="tech-country">China - Consumer and Professional</div>
             <div className="tech-tags">
               <span className="tech-tag">OcuSync O3+</span>
               <span className="tech-tag">APAS 5.0 Avoidance</span>
@@ -579,7 +612,7 @@ export default function App() {
           </div>
           <div className="tech-card">
             <div className="tech-company-name">Autel Robotics</div>
-            <div className="tech-country">USA — Consumer</div>
+            <div className="tech-country">USA - Consumer</div>
             <div className="tech-tags">
               <span className="tech-tag">SkyLink Transmission</span>
               <span className="tech-tag">LiDAR Avoidance</span>
@@ -588,7 +621,7 @@ export default function App() {
           </div>
           <div className="tech-card">
             <div className="tech-company-name">Skydio</div>
-            <div className="tech-country">USA — AI Autonomy</div>
+            <div className="tech-country">USA - AI Autonomy</div>
             <div className="tech-tags">
               <span className="tech-tag">AI Autonomy Engine</span>
               <span className="tech-tag">360 Obstacle Avoidance</span>
@@ -597,7 +630,7 @@ export default function App() {
           </div>
           <div className="tech-card">
             <div className="tech-company-name">Parrot Group</div>
-            <div className="tech-country">France — Enterprise</div>
+            <div className="tech-country">France - Enterprise</div>
             <div className="tech-tags">
               <span className="tech-tag">FreeFlight 7</span>
               <span className="tech-tag">ANAFI Thermal</span>
@@ -606,7 +639,7 @@ export default function App() {
           </div>
           <div className="tech-card">
             <div className="tech-company-name">senseFly (Trimble)</div>
-            <div className="tech-country">Switzerland — Surveying</div>
+            <div className="tech-country">Switzerland - Surveying</div>
             <div className="tech-tags">
               <span className="tech-tag">Fixed-Wing Autopilot</span>
               <span className="tech-tag">PPK RTK GPS</span>
@@ -615,7 +648,7 @@ export default function App() {
           </div>
           <div className="tech-card">
             <div className="tech-company-name">Zipline</div>
-            <div className="tech-country">USA — Delivery Logistics</div>
+            <div className="tech-country">USA - Delivery Logistics</div>
             <div className="tech-tags">
               <span className="tech-tag">Fixed-Wing Delivery</span>
               <span className="tech-tag">Autonomous Dispatch</span>
@@ -624,7 +657,7 @@ export default function App() {
           </div>
           <div className="tech-card">
             <div className="tech-company-name">XAG</div>
-            <div className="tech-country">China — Agriculture</div>
+            <div className="tech-country">China - Agriculture</div>
             <div className="tech-tags">
               <span className="tech-tag">RealTerra 3D Mapping</span>
               <span className="tech-tag">Precision Spraying</span>
@@ -633,7 +666,7 @@ export default function App() {
           </div>
           <div className="tech-card">
             <div className="tech-company-name">Quantum Systems</div>
-            <div className="tech-country">Germany — Defence VTOL</div>
+            <div className="tech-country">Germany - Defence VTOL</div>
             <div className="tech-tags">
               <span className="tech-tag">Vector VTOL</span>
               <span className="tech-tag">AI Sensor Fusion</span>
@@ -642,7 +675,7 @@ export default function App() {
           </div>
           <div className="tech-card">
             <div className="tech-company-name">Percepto</div>
-            <div className="tech-country">Israel — Autonomous Inspection</div>
+            <div className="tech-country">Israel - Autonomous Inspection</div>
             <div className="tech-tags">
               <span className="tech-tag">Drone-in-a-Box</span>
               <span className="tech-tag">AIM Platform</span>
@@ -712,14 +745,14 @@ export default function App() {
         <div className="section-label">FAQ + AI Assistant</div>
         <h2 className="section-title">35 expert answers. And an AI that goes deeper.</h2>
         <p className="section-sub">
-          Search our drone FAQ instantly. Or ask the AI assistant anything — it answers in seconds, qualifies your needs, and connects you with the right resource.
+          Search our drone FAQ instantly. Or ask the AI assistant anything - it answers in seconds, qualifies your needs, and connects you with the right resource.
         </p>
 
         <div className="faq-chat-layout">
           {/* FAQ PANEL */}
           <div className="faq-panel">
             <div className="faq-panel-header">
-              <h2>Drone FAQ — 35 Expert Answers</h2>
+              <h2>Drone FAQ - 35 Expert Answers</h2>
               <span className="faq-count">7 Categories</span>
             </div>
             <div className="faq-search-wrap">
@@ -809,7 +842,7 @@ export default function App() {
               <div className="chat-avatar">🤖</div>
               <div className="chat-header-info">
                 <h3>Drone Assistant</h3>
-                <p>drones.help AI — replies instantly</p>
+                <p>drones.help AI - replies instantly</p>
               </div>
               <div className="online-dot"></div>
             </div>
