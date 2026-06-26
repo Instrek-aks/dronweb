@@ -456,7 +456,7 @@ export default function App() {
           </div>
           <div className="service-card">
             <div className="service-icon bg-orange">
-              <img src="/Drones.help/What we offer/Expert Q&amp;A Community.png" alt="Expert Q&amp;A Community" className="service-icon-img" />
+              <img src="/Drones.help/What we offer/Expert Q&A Community.webp" alt="Expert Q&amp;A Community" className="service-icon-img" />
             </div>
             <h3>Expert Q&amp;A Community</h3>
             <p>Ask certified drone engineers and veteran pilots. Verified answers, searchable archive, and weekly live AMA sessions.</p>
