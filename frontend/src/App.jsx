@@ -358,59 +358,7 @@ export default function App() {
           </div>
         </div>
         <div className="hero-visual">
-          <svg className="drone-diagram" viewBox="0 0 520 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#E8EAF0" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="520" height="420" fill="#F8FAFF" rx="20" />
-            <rect width="520" height="420" fill="url(#grid)" rx="20" />
-            <rect x="195" y="175" width="130" height="70" rx="12" fill="#0A0E1A" />
-            <rect x="215" y="185" width="90" height="50" rx="8" fill="#1A2240" />
-            <circle cx="260" cy="210" r="16" fill="#0A0E1A" stroke="#00D4FF" strokeWidth="1.5" />
-            <circle cx="260" cy="210" r="9" fill="#00D4FF" opacity="0.3" />
-            <circle cx="260" cy="210" r="5" fill="#00D4FF" />
-            <rect x="100" y="195" width="100" height="8" rx="4" fill="#2E3449" transform="rotate(-20 100 195)" />
-            <rect x="320" y="185" width="100" height="8" rx="4" fill="#2E3449" transform="rotate(20 320 185)" />
-            <rect x="100" y="225" width="100" height="8" rx="4" fill="#2E3449" transform="rotate(20 100 225)" />
-            <rect x="320" y="215" width="100" height="8" rx="4" fill="#2E3449" transform="rotate(-20 320 215)" />
-            <ellipse cx="95" cy="155" rx="55" ry="9" fill="#00D4FF" opacity="0.18" />
-            <line x1="40" y1="155" x2="150" y2="155" stroke="#00D4FF" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
-            <circle cx="95" cy="155" r="5" fill="#0A0E1A" stroke="#00D4FF" strokeWidth="1.5" />
-            <ellipse cx="425" cy="148" rx="55" ry="9" fill="#00D4FF" opacity="0.18" />
-            <line x1="370" y1="148" x2="480" y2="148" stroke="#00D4FF" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
-            <circle cx="425" cy="148" r="5" fill="#0A0E1A" stroke="#00D4FF" strokeWidth="1.5" />
-            <ellipse cx="88" cy="280" rx="55" ry="9" fill="#00E5A0" opacity="0.18" />
-            <line x1="33" y1="280" x2="143" y2="280" stroke="#00E5A0" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
-            <circle cx="88" cy="280" r="5" fill="#0A0E1A" stroke="#00E5A0" strokeWidth="1.5" />
-            <ellipse cx="432" cy="272" rx="55" ry="9" fill="#00E5A0" opacity="0.18" />
-            <line x1="377" y1="272" x2="487" y2="272" stroke="#00E5A0" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
-            <circle cx="432" cy="272" r="5" fill="#0A0E1A" stroke="#00E5A0" strokeWidth="1.5" />
-            <line x1="225" y1="245" x2="215" y2="310" stroke="#2E3449" strokeWidth="3" strokeLinecap="round" />
-            <line x1="295" y1="245" x2="305" y2="310" stroke="#2E3449" strokeWidth="3" strokeLinecap="round" />
-            <line x1="200" y1="310" x2="240" y2="310" stroke="#2E3449" strokeWidth="3" strokeLinecap="round" />
-            <line x1="280" y1="310" x2="320" y2="310" stroke="#2E3449" strokeWidth="3" strokeLinecap="round" />
-            <circle cx="260" cy="110" r="20" stroke="#00D4FF" strokeWidth="1.2" opacity="0.4" fill="none" />
-            <circle cx="260" cy="110" r="35" stroke="#00D4FF" strokeWidth="0.8" opacity="0.25" fill="none" />
-            <circle cx="260" cy="110" r="52" stroke="#00D4FF" strokeWidth="0.5" opacity="0.12" fill="none" />
-            <line x1="260" y1="143" x2="260" y2="175" stroke="#00D4FF" strokeWidth="1" strokeDasharray="3 3" opacity="0.5" />
-            <rect x="22" y="120" width="110" height="28" rx="6" fill="white" stroke="#E8EAF0" strokeWidth="1" />
-            <text x="77" y="139" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fill="#6B7280">Brushless Motors</text>
-            <rect x="385" y="112" width="110" height="28" rx="6" fill="white" stroke="#E8EAF0" strokeWidth="1" />
-            <text x="440" y="131" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fill="#6B7280">4K Gimbal Camera</text>
-            <rect x="30" y="335" width="100" height="28" rx="6" fill="white" stroke="#E8EAF0" strokeWidth="1" />
-            <text x="80" y="354" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fill="#6B7280">GPS Module</text>
-            <rect x="390" y="328" width="100" height="28" rx="6" fill="white" stroke="#E8EAF0" strokeWidth="1" />
-            <text x="440" y="347" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="11" fill="#6B7280">LiPo Battery</text>
-            <line x1="130" y1="134" x2="155" y2="155" stroke="#CBD5E0" strokeWidth="0.8" strokeDasharray="4 3" />
-            <line x1="385" y1="126" x2="365" y2="148" stroke="#CBD5E0" strokeWidth="0.8" strokeDasharray="4 3" />
-            <line x1="130" y1="349" x2="160" y2="310" stroke="#CBD5E0" strokeWidth="0.8" strokeDasharray="4 3" />
-            <line x1="390" y1="342" x2="358" y2="310" stroke="#CBD5E0" strokeWidth="0.8" strokeDasharray="4 3" />
-            <rect x="193" y="360" width="134" height="32" rx="16" fill="#0A0E1A" />
-            <circle cx="214" cy="376" r="5" fill="#00E5A0" />
-            <text x="226" y="380" fontFamily="DM Sans,sans-serif" fontSize="11.5" fill="white" fontWeight="500">Live · 94m altitude</text>
-          </svg>
+          <img src="/Drones.help/Main_banner.png" alt="Drones.help Main Banner" className="hero-img" />
         </div>
       </section>
 
@@ -443,55 +391,73 @@ export default function App() {
         </p>
         <div className="services-grid">
           <div className="service-card">
-            <div className="service-icon bg-blue">🛠️</div>
+            <div className="service-icon bg-blue">
+              <img src="/Drones.help/What we offer/Setup Tutorials.png" alt="Setup Tutorials" className="service-icon-img" />
+            </div>
             <h3>Setup Tutorials</h3>
             <p>Guided setup for 500+ models. Remote binding, IMU calibration, flight mode configuration, and maiden-flight checklists.</p>
             <span className="service-tag">Beginner Friendly</span>
           </div>
           <div className="service-card">
-            <div className="service-icon bg-orange">🔧</div>
+            <div className="service-icon bg-orange">
+              <img src="/Drones.help/What we offer/Repair and Diagnostics.png" alt="Repair and Diagnostics" className="service-icon-img" />
+            </div>
             <h3>Repair and Diagnostics</h3>
             <p>Fix motor failures, replace ESCs, resolder boards, troubleshoot firmware crashes, and repair cracked frames. Video and written guides.</p>
             <span className="service-tag">Intermediate</span>
           </div>
           <div className="service-card">
-            <div className="service-icon bg-green">📡</div>
+            <div className="service-icon bg-green">
+              <img src="/Drones.help/What we offer/Technology Deep Dives.png" alt="Technology Deep Dives" className="service-icon-img" />
+            </div>
             <h3>Technology Deep Dives</h3>
             <p>How obstacle avoidance, LiDAR, FPV signal stacks, and autopilot firmware work - explained for pilots and engineers alike.</p>
             <span className="service-tag">Technical</span>
           </div>
           <div className="service-card">
-            <div className="service-icon bg-purple">🗂️</div>
+            <div className="service-icon bg-purple">
+              <img src="/Drones.help/What we offer/Drone Model Encyclopaedia.png" alt="Drone Model Encyclopaedia" className="service-icon-img" />
+            </div>
             <h3>Drone Model Encyclopaedia</h3>
             <p>Spec sheets, sensor payloads, endurance ratings, and competitor comparisons for 1,400+ consumer, commercial, and military drones.</p>
             <span className="service-tag">Reference</span>
           </div>
           <div className="service-card">
-            <div className="service-icon bg-yellow">🏭</div>
+            <div className="service-icon bg-yellow">
+              <img src="/Drones.help/What we offer/Company and Tech Intelligence.png" alt="Company and Tech Intelligence" className="service-icon-img" />
+            </div>
             <h3>Company and Tech Intelligence</h3>
             <p>In-depth profiles on 80+ manufacturers: flagship technologies, IP portfolios, funding history, and market positioning.</p>
             <span className="service-tag">Industry</span>
           </div>
           <div className="service-card">
-            <div className="service-icon bg-pink">🌍</div>
+            <div className="service-icon bg-pink">
+              <img src="/Drones.help/What we offer/Regulations by Country.png" alt="Regulations by Country" className="service-icon-img" />
+            </div>
             <h3>Regulations by Country</h3>
             <p>Drone regulations, licensing requirements, no-fly zones, and import restrictions for 46 countries - updated quarterly.</p>
             <span className="service-tag">Compliance</span>
           </div>
           <div className="service-card">
-            <div className="service-icon bg-blue">🎓</div>
+            <div className="service-icon bg-blue">
+              <img src="/Drones.help/What we offer/Certification Prep.png" alt="Certification Prep" className="service-icon-img" />
+            </div>
             <h3>Certification Prep</h3>
             <p>Courses aligned to FAA Part 107, DGCA India, EU A1/A2/A3, and BVLOS operator certifications.</p>
             <span className="service-tag">Career</span>
           </div>
           <div className="service-card">
-            <div className="service-icon bg-green">🤖</div>
+            <div className="service-icon bg-green">
+              <img src="/Drones.help/What we offer/Custom Build Guides.png" alt="Custom Build Guides" className="service-icon-img" />
+            </div>
             <h3>Custom Build Guides</h3>
             <p>Component selection, motor-prop pairing calculators, and full BOMs for FPV freestyle, long-range, and commercial builds.</p>
             <span className="service-tag">Advanced</span>
           </div>
           <div className="service-card">
-            <div className="service-icon bg-orange">💬</div>
+            <div className="service-icon bg-orange">
+              <img src="/Drones.help/What we offer/Expert Q&amp;A Community.png" alt="Expert Q&amp;A Community" className="service-icon-img" />
+            </div>
             <h3>Expert Q&amp;A Community</h3>
             <p>Ask certified drone engineers and veteran pilots. Verified answers, searchable archive, and weekly live AMA sessions.</p>
             <span className="service-tag">Community</span>
@@ -536,56 +502,72 @@ export default function App() {
         <p className="section-sub">Tutorials and encyclopaedia entries spanning every major drone category in the global market today.</p>
         <div className="types-grid">
           <div className="type-card">
-            <div className="type-img bg-blue">🚁</div>
+            <div className="type-img bg-blue">
+              <img src="/Drones.help/Drone categories/Consumer Quadcopters.png" alt="Consumer Quadcopters" className="type-card-img" />
+            </div>
             <div>
               <h3>Consumer Quadcopters</h3>
               <p>DJI Mini series, Autel Evo Nano, Holy Stone - setup, calibration, and photography guides.</p>
             </div>
           </div>
           <div className="type-card">
-            <div className="type-img bg-orange">🎬</div>
+            <div className="type-img bg-orange">
+              <img src="/Drones.help/Drone categories/Professional Cinema Drones.png" alt="Professional Cinema Drones" className="type-card-img" />
+            </div>
             <div>
               <h3>Professional Cinema Drones</h3>
               <p>DJI Inspire, Freefly Alta, and heavy-lift cinema platforms. Gimbal and payload integration.</p>
             </div>
           </div>
           <div className="type-card">
-            <div className="type-img bg-green">🌾</div>
+            <div className="type-img bg-green">
+              <img src="/Drones.help/Drone categories/Agricultural Drones.png" alt="Agricultural Drones" className="type-card-img" />
+            </div>
             <div>
               <h3>Agricultural Drones</h3>
               <p>DJI Agras, XAG P100, Hylio AG-272 - spraying, multispectral imaging, and precision agriculture.</p>
             </div>
           </div>
           <div className="type-card">
-            <div className="type-img bg-purple">⚡</div>
+            <div className="type-img bg-purple">
+              <img src="/Drones.help/Drone categories/FPV and Racing Drones.png" alt="FPV and Racing Drones" className="type-card-img" />
+            </div>
             <div>
               <h3>FPV and Racing Drones</h3>
               <p>Custom 5-inch freestyle builds, TinyWhoops, long-range FPV, and Betaflight tuning guides.</p>
             </div>
           </div>
           <div className="type-card">
-            <div className="type-img bg-yellow">🔭</div>
+            <div className="type-img bg-yellow">
+              <img src="/Drones.help/Drone categories/Fixed-Wing and VTOL.png" alt="Fixed-Wing and VTOL" className="type-card-img" />
+            </div>
             <div>
               <h3>Fixed-Wing and VTOL</h3>
               <p>WingtraOne, SenseFly eBee, and BVLOS survey platforms. Autopilot and mission planning.</p>
             </div>
           </div>
           <div className="type-card">
-            <div className="type-img bg-pink">🛡️</div>
+            <div className="type-img bg-pink">
+              <img src="/Drones.help/Drone categories/Defence and Surveillance UAVs.png" alt="Defence and Surveillance UAVs" className="type-card-img" />
+            </div>
             <div>
               <h3>Defence and Surveillance UAVs</h3>
               <p>Technology profiles of military-grade UAVs, loitering munitions, swarm systems, and counter-drone tech.</p>
             </div>
           </div>
           <div className="type-card">
-            <div className="type-img bg-blue">📦</div>
+            <div className="type-img bg-blue">
+              <img src="/Drones.help/Drone categories/Cargo and Delivery Drones.png" alt="Cargo and Delivery Drones" className="type-card-img" />
+            </div>
             <div>
               <h3>Cargo and Delivery Drones</h3>
               <p>Wing, Zipline, Manna Aero - payload systems, route planning, and UTM integration.</p>
             </div>
           </div>
           <div className="type-card">
-            <div className="type-img bg-green">🏗️</div>
+            <div className="type-img bg-green">
+              <img src="/Drones.help/Drone categories/Industrial Inspection Drones.png" alt="Industrial Inspection Drones" className="type-card-img" />
+            </div>
             <div>
               <h3>Industrial Inspection Drones</h3>
               <p>Thermal, LiDAR, and gas-sensor platforms for infrastructure, power lines, and pipeline inspection.</p>
