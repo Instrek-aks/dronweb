@@ -358,7 +358,7 @@ export default function App() {
           </div>
         </div>
         <div className="hero-visual">
-          <img src="/Drones.help/Main_banner.png" alt="Drones.help Main Banner" className="hero-img" />
+          <img src="/Drones.help/Main_banner.webp" alt="Drones.help Main Banner" className="hero-img" />
         </div>
       </section>
 
@@ -392,7 +392,7 @@ export default function App() {
         <div className="services-grid">
           <div className="service-card">
             <div className="service-icon bg-blue">
-              <img src="/Drones.help/What we offer/Setup Tutorials.png" alt="Setup Tutorials" className="service-icon-img" />
+              <img src="/Drones.help/What we offer/Setup Tutorials.webp" alt="Setup Tutorials" className="service-icon-img" />
             </div>
             <h3>Setup Tutorials</h3>
             <p>Guided setup for 500+ models. Remote binding, IMU calibration, flight mode configuration, and maiden-flight checklists.</p>
@@ -400,7 +400,7 @@ export default function App() {
           </div>
           <div className="service-card">
             <div className="service-icon bg-orange">
-              <img src="/Drones.help/What we offer/Repair and Diagnostics.png" alt="Repair and Diagnostics" className="service-icon-img" />
+              <img src="/Drones.help/What we offer/Repair and Diagnostics.webp" alt="Repair and Diagnostics" className="service-icon-img" />
             </div>
             <h3>Repair and Diagnostics</h3>
             <p>Fix motor failures, replace ESCs, resolder boards, troubleshoot firmware crashes, and repair cracked frames. Video and written guides.</p>
@@ -408,7 +408,7 @@ export default function App() {
           </div>
           <div className="service-card">
             <div className="service-icon bg-green">
-              <img src="/Drones.help/What we offer/Technology Deep Dives.png" alt="Technology Deep Dives" className="service-icon-img" />
+              <img src="/Drones.help/What we offer/Technology Deep Dives.webp" alt="Technology Deep Dives" className="service-icon-img" />
             </div>
             <h3>Technology Deep Dives</h3>
             <p>How obstacle avoidance, LiDAR, FPV signal stacks, and autopilot firmware work - explained for pilots and engineers alike.</p>
@@ -416,7 +416,7 @@ export default function App() {
           </div>
           <div className="service-card">
             <div className="service-icon bg-purple">
-              <img src="/Drones.help/What we offer/Drone Model Encyclopaedia.png" alt="Drone Model Encyclopaedia" className="service-icon-img" />
+              <img src="/Drones.help/What we offer/Drone Model Encyclopaedia.webp" alt="Drone Model Encyclopaedia" className="service-icon-img" />
             </div>
             <h3>Drone Model Encyclopaedia</h3>
             <p>Spec sheets, sensor payloads, endurance ratings, and competitor comparisons for 1,400+ consumer, commercial, and military drones.</p>
@@ -424,7 +424,7 @@ export default function App() {
           </div>
           <div className="service-card">
             <div className="service-icon bg-yellow">
-              <img src="/Drones.help/What we offer/Company and Tech Intelligence.png" alt="Company and Tech Intelligence" className="service-icon-img" />
+              <img src="/Drones.help/What we offer/Company and Tech Intelligence.webp" alt="Company and Tech Intelligence" className="service-icon-img" />
             </div>
             <h3>Company and Tech Intelligence</h3>
             <p>In-depth profiles on 80+ manufacturers: flagship technologies, IP portfolios, funding history, and market positioning.</p>
@@ -432,7 +432,7 @@ export default function App() {
           </div>
           <div className="service-card">
             <div className="service-icon bg-pink">
-              <img src="/Drones.help/What we offer/Regulations by Country.png" alt="Regulations by Country" className="service-icon-img" />
+              <img src="/Drones.help/What we offer/Regulations by Country.webp" alt="Regulations by Country" className="service-icon-img" />
             </div>
             <h3>Regulations by Country</h3>
             <p>Drone regulations, licensing requirements, no-fly zones, and import restrictions for 46 countries - updated quarterly.</p>
@@ -440,7 +440,7 @@ export default function App() {
           </div>
           <div className="service-card">
             <div className="service-icon bg-blue">
-              <img src="/Drones.help/What we offer/Certification Prep.png" alt="Certification Prep" className="service-icon-img" />
+              <img src="/Drones.help/What we offer/Certification Prep.webp" alt="Certification Prep" className="service-icon-img" />
             </div>
             <h3>Certification Prep</h3>
             <p>Courses aligned to FAA Part 107, DGCA India, EU A1/A2/A3, and BVLOS operator certifications.</p>
@@ -448,7 +448,7 @@ export default function App() {
           </div>
           <div className="service-card">
             <div className="service-icon bg-green">
-              <img src="/Drones.help/What we offer/Custom Build Guides.png" alt="Custom Build Guides" className="service-icon-img" />
+              <img src="/Drones.help/What we offer/Custom Build Guides.webp" alt="Custom Build Guides" className="service-icon-img" />
             </div>
             <h3>Custom Build Guides</h3>
             <p>Component selection, motor-prop pairing calculators, and full BOMs for FPV freestyle, long-range, and commercial builds.</p>
@@ -503,7 +503,7 @@ export default function App() {
         <div className="types-grid">
           <div className="type-card">
             <div className="type-img bg-blue">
-              <img src="/Drones.help/Drone categories/Consumer Quadcopters.png" alt="Consumer Quadcopters" className="type-card-img" />
+              <img src="/Drones.help/Drone categories/Consumer Quadcopters.webp" alt="Consumer Quadcopters" className="type-card-img" />
             </div>
             <div>
               <h3>Consumer Quadcopters</h3>
@@ -512,7 +512,7 @@ export default function App() {
           </div>
           <div className="type-card">
             <div className="type-img bg-orange">
-              <img src="/Drones.help/Drone categories/Professional Cinema Drones.png" alt="Professional Cinema Drones" className="type-card-img" />
+              <img src="/Drones.help/Drone categories/Professional Cinema Drones.webp" alt="Professional Cinema Drones" className="type-card-img" />
             </div>
             <div>
               <h3>Professional Cinema Drones</h3>
@@ -521,7 +521,7 @@ export default function App() {
           </div>
           <div className="type-card">
             <div className="type-img bg-green">
-              <img src="/Drones.help/Drone categories/Agricultural Drones.png" alt="Agricultural Drones" className="type-card-img" />
+              <img src="/Drones.help/Drone categories/Agricultural Drones.webp" alt="Agricultural Drones" className="type-card-img" />
             </div>
             <div>
               <h3>Agricultural Drones</h3>
@@ -530,7 +530,7 @@ export default function App() {
           </div>
           <div className="type-card">
             <div className="type-img bg-purple">
-              <img src="/Drones.help/Drone categories/FPV and Racing Drones.png" alt="FPV and Racing Drones" className="type-card-img" />
+              <img src="/Drones.help/Drone categories/FPV and Racing Drones.webp" alt="FPV and Racing Drones" className="type-card-img" />
             </div>
             <div>
               <h3>FPV and Racing Drones</h3>
@@ -539,7 +539,7 @@ export default function App() {
           </div>
           <div className="type-card">
             <div className="type-img bg-yellow">
-              <img src="/Drones.help/Drone categories/Fixed-Wing and VTOL.png" alt="Fixed-Wing and VTOL" className="type-card-img" />
+              <img src="/Drones.help/Drone categories/Fixed-Wing and VTOL.webp" alt="Fixed-Wing and VTOL" className="type-card-img" />
             </div>
             <div>
               <h3>Fixed-Wing and VTOL</h3>
@@ -548,7 +548,7 @@ export default function App() {
           </div>
           <div className="type-card">
             <div className="type-img bg-pink">
-              <img src="/Drones.help/Drone categories/Defence and Surveillance UAVs.png" alt="Defence and Surveillance UAVs" className="type-card-img" />
+              <img src="/Drones.help/Drone categories/Defence and Surveillance UAVs.webp" alt="Defence and Surveillance UAVs" className="type-card-img" />
             </div>
             <div>
               <h3>Defence and Surveillance UAVs</h3>
@@ -557,7 +557,7 @@ export default function App() {
           </div>
           <div className="type-card">
             <div className="type-img bg-blue">
-              <img src="/Drones.help/Drone categories/Cargo and Delivery Drones.png" alt="Cargo and Delivery Drones" className="type-card-img" />
+              <img src="/Drones.help/Drone categories/Cargo and Delivery Drones.webp" alt="Cargo and Delivery Drones" className="type-card-img" />
             </div>
             <div>
               <h3>Cargo and Delivery Drones</h3>
@@ -566,7 +566,7 @@ export default function App() {
           </div>
           <div className="type-card">
             <div className="type-img bg-green">
-              <img src="/Drones.help/Drone categories/Industrial Inspection Drones.png" alt="Industrial Inspection Drones" className="type-card-img" />
+              <img src="/Drones.help/Drone categories/Industrial Inspection Drones.webp" alt="Industrial Inspection Drones" className="type-card-img" />
             </div>
             <div>
               <h3>Industrial Inspection Drones</h3>
