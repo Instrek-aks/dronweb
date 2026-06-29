@@ -727,7 +727,7 @@ export default function App() {
         <div className="section-label">FAQ + AI Assistant</div>
         <h2 className="section-title">35 expert answers. And an AI that goes deeper.</h2>
         <p className="section-sub">
-          Search our drone FAQ instantly. Or ask the AI assistant anything - it answers in seconds, qualifies your needs, and connects you with the right resource.
+          Search our drone FAQ instantly or ask the AI assistant anything - it answers in seconds, qualifies your needs, and connects you with the right resource.
         </p>
 
         <div className="faq-chat-layout">

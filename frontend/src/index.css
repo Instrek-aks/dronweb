@@ -317,11 +317,11 @@ section{padding:var(--section-pad-y) var(--section-pad-x)}
 .plan-price sup{font-size:1.2rem;font-weight:600;vertical-align:top;margin-top:.4rem}
 .plan-period{font-size:.85rem;color:var(--ink-muted);margin-bottom:1.75rem}
 .plan-card.featured .plan-period{color:rgba(255,255,255,.5)}
-.plan-features{list-style:none;margin-bottom:2rem;margin-top:auto}
+.plan-features{list-style:none;margin-bottom:2rem;margin-top:1.25rem}
 .plan-features li{font-size:.9rem;padding:.45rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem;color:var(--ink-mid)}
 .plan-card.featured .plan-features li{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.12)}
 .plan-features li::before{content:'✓';font-weight:700;color:var(--accent-green);font-size:.85rem}
-.plan-card .btn-primary{width:100%;text-align:center;display:block}
+.plan-card .btn-primary{width:100%;text-align:center;display:block;margin-top:auto}
 .plan-card.featured .btn-primary{background:var(--accent);color:var(--ink)}
 
 @media (max-width: 1024px) {
