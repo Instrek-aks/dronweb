@@ -53,7 +53,7 @@ const CAT_LABELS = {
 const WEBSITE_CONTEXT = `
 ABOUT DRONES.HELP:
 Global Drone Intelligence Hub. The world's most comprehensive drone learning and intelligence platform. Built for everyone from first-time flyers to defence engineers.
-Stats: 1,400+ Drone models catalogued, 320+ Step-by-step tutorials, 80+ Manufacturers covered, 46 Countries with regulations.
+Stats: 1,400+ Drone models catalogued, 320+ Step-by-step tutorials, 80+ Manufacturers covered, 46 Countries Covered.
 
 SERVICES OFFERED:
 - Setup Tutorials: Guided setup for 500+ models. Remote binding, IMU calibration, flight mode configuration.
@@ -378,7 +378,7 @@ export default function App() {
         </div>
         <div>
           <div className="stat-num">46</div>
-          <div className="stat-label">Countries with regulations</div>
+          <div className="stat-label">Countries Covered</div>
         </div>
       </div>
 
@@ -387,7 +387,7 @@ export default function App() {
         <div className="section-label">What we offer</div>
         <h2 className="section-title">Everything you need to know about drones</h2>
         <p className="section-sub">
-          From first-time setup to advanced electronics repair - expert-authored content for every stage of your drone journey.
+          From first-time setup to advanced electronics repair, expert-authored content for every stage of your drone journey.
         </p>
         <div className="services-grid">
           <div className="service-card">
@@ -403,7 +403,7 @@ export default function App() {
               <img src="/Drones.help/What we offer/Repair and Diagnostics.webp" alt="Repair and Diagnostics" className="service-icon-img" />
             </div>
             <h3>Repair and Diagnostics</h3>
-            <p>Fix motor failures, replace ESCs, resolder boards, troubleshoot firmware crashes, and repair cracked frames. Video and written guides.</p>
+            <p>Fix motor failures, replace ESCs, resolder boards, troubleshoot firmware crashes, and repair cracked frames - video and written guides.</p>
             <span className="service-tag">Intermediate</span>
           </div>
           <div className="service-card">
@@ -459,7 +459,7 @@ export default function App() {
               <img src="/Drones.help/What we offer/Expert Q&A Community.webp" alt="Expert Q&amp;A Community" className="service-icon-img" />
             </div>
             <h3>Expert Q&amp;A Community</h3>
-            <p>Ask certified drone engineers and veteran pilots. Verified answers, searchable archive, and weekly live AMA sessions.</p>
+            <p>Ask certified drone engineers and veteran pilots - verified answers, searchable archive, and weekly live AMA sessions.</p>
             <span className="service-tag">Community</span>
           </div>
         </div>
@@ -469,7 +469,7 @@ export default function App() {
       <section className="how-it-works" id="how">
         <div className="section-label">How it works</div>
         <h2 className="section-title">From zero to flying in four steps</h2>
-        <p className="section-sub">Structured learning paths from unboxing to certified pilot - without the overwhelm.</p>
+        <p className="section-sub">Structured learning paths from unboxing to becoming a certified pilot - without the overwhelm.</p>
         <div className="steps-grid">
           <div className="step-connector"></div>
           <div className="step">
@@ -672,7 +672,7 @@ export default function App() {
         <div className="section-label">Membership plans</div>
         <h2 className="section-title">Start free. Upgrade anytime.</h2>
         <p className="section-sub">
-          Hundreds of free tutorials on day one. Unlock the full library, certifications, and expert support with a premium plan.
+          Hundreds of free tutorials from day one. Unlock the full library, certifications, and expert support with a Premium plan.
         </p>
         <div className="plans-grid">
           <div className="plan-card">
