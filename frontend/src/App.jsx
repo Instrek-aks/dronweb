@@ -211,6 +211,41 @@ export default function App() {
     setMessages(updatedMessages);
     setIsTyping(true);
 
+    // Check if the user query matches any FAQ locally to avoid API calls
+    const cleanStr = (s) => s.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
+    const cleanedText = cleanStr(text);
+    const matchedFAQ = FAQ_DATA.find((item) => {
+      const cleanedQ = cleanStr(item.q);
+      if (cleanedQ === cleanedText) return true;
+      if (cleanedText.length >= 6) {
+        if (cleanedQ.includes(cleanedText) || cleanedText.includes(cleanedQ)) return true;
+      }
+      return false;
+    });
+
+    if (matchedFAQ) {
+      setTimeout(() => {
+        setMessages((prev) => [...prev, { role: 'bot', content: matchedFAQ.a }]);
+        setIsTyping(false);
+
+        const lower = text.toLowerCase();
+        let newQRs = [];
+        if (lower.includes('beginn') || lower.includes('first') || lower.includes('start') || matchedFAQ.cat === 'setup') {
+          newQRs = ['Best starter drone?', 'How to set up my first drone?', 'What license do I need?'];
+        } else if (lower.includes('repair') || lower.includes('fix') || lower.includes('broken') || matchedFAQ.cat === 'repair') {
+          newQRs = ['My motor won\'t spin', 'Drone drifts left', 'Replace a propeller?'];
+        } else if (lower.includes('regulat') || lower.includes('law') || lower.includes('licens') || matchedFAQ.cat === 'regs') {
+          newQRs = ['Rules in India', 'FAA Part 107 overview', 'Do I need insurance?'];
+        } else if (lower.includes('buy') || lower.includes('price') || lower.includes('cost') || matchedFAQ.cat === 'pricing') {
+          newQRs = ['Best drones under $500', 'DJI vs Autel', 'Professional drone options'];
+        } else {
+          newQRs = ['Setup help', 'Repair guide', 'Regulations', 'View pricing plans'];
+        }
+        setQuickReplies(newQRs);
+      }, 600);
+      return;
+    }
+
     try {
       // Map local roles ('user'/'bot') to API expectations ('user'/'assistant')
       // We slice(1) to skip the initial bot greeting because the Anthropic Messages API 
