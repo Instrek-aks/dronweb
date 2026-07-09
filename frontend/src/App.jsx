@@ -141,10 +141,10 @@ export default function App() {
     }
   ]);
   const [quickReplies, setQuickReplies] = useState([
-    "I'm a complete beginner",
-    "Need help fixing my drone",
-    "Comparing drone models",
-    "Questions about regulations"
+    "What is the best drone for a beginner?",
+    "My drone won't take off. What do I check?",
+    "Do I need a license to fly a drone?",
+    "How do I set up a drone for the first time?"
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const [chatInput, setChatInput] = useState('');
@@ -212,16 +212,86 @@ export default function App() {
     setIsTyping(true);
 
     // Check if the user query matches any FAQ locally to avoid API calls
-    const cleanStr = (s) => s.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
-    const cleanedText = cleanStr(text);
-    const matchedFAQ = FAQ_DATA.find((item) => {
-      const cleanedQ = cleanStr(item.q);
-      if (cleanedQ === cleanedText) return true;
-      if (cleanedText.length >= 6) {
-        if (cleanedQ.includes(cleanedText) || cleanedText.includes(cleanedQ)) return true;
+    const getWords = (s) => {
+      let normalized = s.toLowerCase()
+        .replace(/licence/g, 'license')
+        .replace(/defence/g, 'defense')
+        .replace(/uav/g, 'drone')
+        .replace(/quadcopter/g, 'drone')
+        .replace(/[^\w\s]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      return normalized.split(' ').filter(w => w.length > 0);
+    };
+
+    const stemWord = (w) => {
+      if (w.startsWith('calibr')) return 'calibr';
+      if (w.startsWith('regul')) return 'regul';
+      if (w.startsWith('replac')) return 'replac';
+      if (w.startsWith('begin')) return 'begin';
+      if (w.startsWith('fly') || w.startsWith('flie') || w.startsWith('flight')) return 'fly';
+      if (w.startsWith('motor')) return 'motor';
+      if (w.startsWith('prop')) return 'prop';
+      if (w.startsWith('avoid')) return 'avoid';
+      if (w.startsWith('insur')) return 'insur';
+      if (w.startsWith('licens')) return 'license';
+      return w;
+    };
+
+    const queryWords = getWords(text);
+    const stemmedQueryWords = queryWords.map(stemWord);
+    const cleanedText = queryWords.join(' ');
+
+    let matchedFAQ = null;
+
+    if (queryWords.length > 0) {
+      // 1. Try exact/substring match first
+      matchedFAQ = FAQ_DATA.find((item) => {
+        const qWords = getWords(item.q);
+        const cleanedQ = qWords.join(' ');
+        if (cleanedQ === cleanedText) return true;
+        if (cleanedText.length >= 6) {
+          if (cleanedQ.includes(cleanedText) || cleanedText.includes(cleanedQ)) return true;
+        }
+        return false;
+      });
+
+      // 2. If no exact/substring match, try token overlap matching
+      if (!matchedFAQ) {
+        let bestScore = 0;
+        let bestMatch = null;
+
+        if (queryWords.length >= 2) {
+          FAQ_DATA.forEach((item) => {
+            const qWords = getWords(item.q);
+            const stemmedQWords = qWords.map(stemWord);
+            
+            // Count overlap of stemmed words
+            let overlap = 0;
+            stemmedQueryWords.forEach(w => {
+              if (stemmedQWords.includes(w)) overlap++;
+            });
+
+            // Calculate score based on overlap and ratio
+            const queryCoverage = overlap / stemmedQueryWords.length;
+            const faqCoverage = overlap / stemmedQWords.length;
+            const score = queryCoverage + faqCoverage;
+
+            // We want at least a solid overlap (e.g. at least 2 words or 50% coverage)
+            if (overlap >= 2 && queryCoverage >= 0.5) {
+              if (score > bestScore) {
+                bestScore = score;
+                bestMatch = item;
+              }
+            }
+          });
+
+          if (bestMatch && bestScore > 0.8) {
+            matchedFAQ = bestMatch;
+          }
+        }
       }
-      return false;
-    });
+    }
 
     if (matchedFAQ) {
       setTimeout(() => {
@@ -230,16 +300,16 @@ export default function App() {
 
         const lower = text.toLowerCase();
         let newQRs = [];
-        if (lower.includes('beginn') || lower.includes('first') || lower.includes('start') || matchedFAQ.cat === 'setup') {
-          newQRs = ['Best starter drone?', 'How to set up my first drone?', 'What license do I need?'];
+        if (lower.includes('beginn') || lower.includes('first') || lower.includes('start') || matchedFAQ.cat === 'setup' || matchedFAQ.cat === 'basics') {
+          newQRs = ['What is the best drone for a beginner?', 'How do I set up a drone for the first time?', 'Do I need a license to fly a drone?'];
         } else if (lower.includes('repair') || lower.includes('fix') || lower.includes('broken') || matchedFAQ.cat === 'repair') {
-          newQRs = ['My motor won\'t spin', 'Drone drifts left', 'Replace a propeller?'];
-        } else if (lower.includes('regulat') || lower.includes('law') || lower.includes('licens') || matchedFAQ.cat === 'regs') {
-          newQRs = ['Rules in India', 'FAA Part 107 overview', 'Do I need insurance?'];
+          newQRs = ["My drone won't take off. What do I check?", 'Why does my drone drift in one direction?', 'How often should I replace propellers?'];
+        } else if (lower.includes('regulat') || lower.includes('law') || lower.includes('licens') || matchedFAQ.cat === 'regs' || matchedFAQ.cat === 'advanced') {
+          newQRs = ['Do I need a license to fly a drone?', 'What is a no-fly zone?', 'Do drones need insurance?'];
         } else if (lower.includes('buy') || lower.includes('price') || lower.includes('cost') || matchedFAQ.cat === 'pricing') {
-          newQRs = ['Best drones under $500', 'DJI vs Autel', 'Professional drone options'];
+          newQRs = ['How much does a drone cost?', 'What is the best drone for a beginner?', 'DJI or another brand?'];
         } else {
-          newQRs = ['Setup help', 'Repair guide', 'Regulations', 'View pricing plans'];
+          newQRs = ['How do I set up a drone for the first time?', 'Why does my drone drift in one direction?', 'Do I need a license to fly a drone?', 'How much does a drone cost?'];
         }
         setQuickReplies(newQRs);
       }, 600);
@@ -319,15 +389,15 @@ export default function App() {
       const lower = text.toLowerCase();
       let newQRs = [];
       if (lower.includes('beginn') || lower.includes('first') || lower.includes('start')) {
-        newQRs = ['Best starter drone?', 'How to set up my first drone?', 'What license do I need?'];
+        newQRs = ['What is the best drone for a beginner?', 'How do I set up a drone for the first time?', 'Do I need a license to fly a drone?'];
       } else if (lower.includes('repair') || lower.includes('fix') || lower.includes('broken')) {
-        newQRs = ['My motor won\'t spin', 'Drone drifts left', 'Replace a propeller?'];
+        newQRs = ["My drone won't take off. What do I check?", 'Why does my drone drift in one direction?', 'How often should I replace propellers?'];
       } else if (lower.includes('regulat') || lower.includes('law') || lower.includes('licens')) {
-        newQRs = ['Rules in India', 'FAA Part 107 overview', 'Do I need insurance?'];
+        newQRs = ['Do I need a license to fly a drone?', 'What is a no-fly zone?', 'Do drones need insurance?'];
       } else if (lower.includes('buy') || lower.includes('price') || lower.includes('cost')) {
-        newQRs = ['Best drones under $500', 'DJI vs Autel', 'Professional drone options'];
+        newQRs = ['How much does a drone cost?', 'What is the best drone for a beginner?', 'DJI or another brand?'];
       } else {
-        newQRs = ['Setup help', 'Repair guide', 'Regulations', 'View pricing plans'];
+        newQRs = ['How do I set up a drone for the first time?', 'Why does my drone drift in one direction?', 'Do I need a license to fly a drone?', 'How much does a drone cost?'];
       }
       setQuickReplies(newQRs);
     } catch (e) {
